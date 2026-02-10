@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>PAIT SpA - Catálogo de Propiedades</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&family=Material+Icons+Round&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#00BE71", // The vibrant green from the reference
+                        secondary: "#0F2841", // Dark navy/blue from headers
+                        "background-light": "#F9FAFB",
+                        "background-dark": "#111827",
+                        "surface-light": "#FFFFFF",
+                        "surface-dark": "#1F2937",
+                        "text-main-light": "#1F2937",
+                        "text-main-dark": "#F3F4F6",
+                        "text-sub-light": "#6B7280",
+                        "text-sub-dark": "#9CA3AF",
+                    },
+                    fontFamily: {
+                        sans: ['Manrope', 'sans-serif'],
+                        display: ['Manrope', 'sans-serif'],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        .hero-bg {
+            background-image: linear-gradient(rgba(15, 40, 65, 0.77), rgba(15, 40, 65, 0.3)), url(/assets/img/sur-chile.webp);
+            background-size: cover;
+            background-position: bottom;
+        }
+
+        select {
+            -webkit-appearance: none;
+            /* Chrome, Safari, Edge */
+            -moz-appearance: none;
+            /* Firefox */
+            appearance: none;
+        }
+    </style>
+</head>
+
+<body
+    class="font-sans bg-background-light dark:bg-background-dark text-text-main-light dark:text-text-main-dark transition-colors duration-300">
+    <nav class="sticky top-0 z-50 w-full bg-white/90 backdrop-blur-md border-b border-[#e6f4ef]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="/" class="flex items-center gap-3">
+                    <img src="/assets/img/logo-pait-web.svg" alt="PAIT SpA Logo" class="w-24">
+                </a>
+                <div
+                    class="hidden lg:flex items-center gap-10 bg-gray-100/50 px-8 py-2 rounded-full border border-gray-200">
+                    <a class="text-lake-blue text-sm font-bold uppercase tracking-wide hover:text-primary transition-colors"
+                        href="#">Inicio</a>
+                    <a class="text-text-muted text-sm font-medium hover:text-primary transition-colors"
+                        href="#">Propiedades</a>
+                    <div class="relative group">
+                        <button
+                            class="flex items-center gap-1 text-text-muted text-sm font-medium hover:text-primary transition-colors outline-none cursor-default">
+                            Soluciones PAIT
+                            <span
+                                class="material-symbols-outlined text-[18px] group-hover:rotate-180 transition-transform duration-300">expand_more</span>
+                        </button>
+                        <div
+                            class="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                            <div
+                                class="w-64 bg-white rounded-2xl shadow-xl border border-gray-100 py-3 overflow-hidden">
+                                <a href="#"
+                                    class="block px-6 py-2.5 text-sm text-text-muted hover:text-primary hover:bg-gray-50 transition-colors">Construcción</a>
+                                <a href="#"
+                                    class="block px-6 py-2.5 text-sm text-text-muted hover:text-primary hover:bg-gray-50 transition-colors">Asesoría
+                                    Legal y Gestión</a>
+                                <a href="#"
+                                    class="block px-6 py-2.5 text-sm text-text-muted hover:text-primary hover:bg-gray-50 transition-colors">Inspección
+                                    Técnica (ITO)</a>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="text-text-muted text-sm font-medium hover:text-primary transition-colors"
+                        href="#">Inversionistas</a>
+                </div>
+                <div class="flex items-center gap-4 sm:gap-6">
+                    <button
+                        class="hidden sm:flex text-sm font-semibold text-gray-600 hover:text-primary items-center gap-1">
+                        <span class="material-symbols-outlined text-[18px]">language</span>
+                        ES | PT
+                    </button>
+                    <button
+                        class="hidden sm:block bg-primary hover:bg-primary-dark text-white text-sm font-bold py-2.5 px-5 rounded-lg transition-colors shadow-lg shadow-primary/20">
+                        Agendar asesoría
+                    </button>
+                    <!-- Hamburger Button -->
+                    <button id="mobile-menu-open"
+                        class="lg:hidden flex items-center p-2 text-lake-blue hover:text-primary transition-colors">
+                        <span class="material-symbols-outlined text-3xl">menu</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu-overlay"
+        class="fixed inset-0 bg-black/50 z-[60] opacity-0 pointer-events-none transition-opacity duration-300 backdrop-blur-sm">
+    </div>
+
+    <!-- Mobile Menu Drawer -->
+    <div id="mobile-menu-drawer"
+        class="fixed top-0 right-0 h-full w-[80%] max-w-sm bg-white z-[70] translate-x-full transition-transform duration-300 ease-in-out shadow-2xl flex flex-col">
+        <div class="p-6 flex justify-between items-center border-b border-gray-100">
+            <img src="../assets/img/logo-pait-web.svg" alt="PAIT SpA Logo" class="w-20">
+            <button id="mobile-menu-close" class="text-lake-blue hover:text-primary transition-colors">
+                <span class="material-symbols-outlined text-3xl">close</span>
+            </button>
+        </div>
+
+        <div class="flex-1 overflow-y-auto py-8 px-6">
+            <nav class="flex flex-col gap-6">
+                <a class="text-lake-blue text-lg font-bold uppercase tracking-wide hover:text-primary transition-colors"
+                    href="#">Inicio</a>
+                <a class="text-text-muted text-lg font-medium hover:text-primary transition-colors"
+                    href="#">Propiedades</a>
+                <div class="flex flex-col">
+                    <button id="mobile-soluciones-toggle"
+                        class="flex items-center justify-between text-text-muted text-lg font-medium hover:text-primary transition-colors w-full outline-none">
+                        Soluciones PAIT
+                        <span id="mobile-soluciones-icon"
+                            class="material-symbols-outlined transition-transform duration-300">expand_more</span>
+                    </button>
+                    <div id="mobile-soluciones-menu"
+                        class="hidden flex-col gap-4 pl-4 mt-4 border-l-2 border-primary/20">
+                        <a class="text-text-muted text-base font-medium hover:text-primary transition-colors"
+                            href="#">Construcción</a>
+                        <a class="text-text-muted text-base font-medium hover:text-primary transition-colors"
+                            href="#">Asesoría Legal y Gestión</a>
+                        <a class="text-text-muted text-base font-medium hover:text-primary transition-colors"
+                            href="#">Inspección Técnica (ITO)</a>
+                    </div>
+                </div>
+                <a class="text-text-muted text-lg font-medium hover:text-primary transition-colors"
+                    href="#">Inversionistas</a>
+            </nav>
+
+            <div class="mt-10 pt-10 border-t border-gray-100 flex flex-col gap-6">
+                <button class="flex items-center gap-2 text-gray-600 font-semibold">
+                    <span class="material-symbols-outlined text-[20px]">language</span>
+                    Cambiar idioma: ES | PT
+                </button>
+                <button
+                    class="w-full bg-primary hover:bg-primary-dark text-white text-base font-bold py-4 px-6 rounded-xl transition-colors shadow-lg shadow-primary/20">
+                    Agendar asesoría
+                </button>
+            </div>
+        </div>
+
+        <div class="p-6 border-t border-gray-100 bg-gray-50/50">
+            <p class="text-xs text-gray-400 text-center">© 2025 PAIT SpA. <br>Todos los derechos reservados.</p>
+        </div>
+    </div>
+    <section class="hero-bg relative h-[600px] flex items-center justify-center text-center px-4">
+        <div class="max-w-4xl w-full z-10">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-4 leading-tight">
+                Encuentra tu lugar en el <br />
+                <span class="text-primary">Sur de Chile.</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-200 mb-10 font-light max-w-2xl mx-auto">
+                Parcelas, Casas y Fundos con factibilidad técnica y legal garantizada por PAIT.
+            </p>
+            <div
+                class="bg-white dark:bg-surface-dark p-4 rounded-xl shadow-2xl max-w-5xl mx-auto transform translate-y-8 md:translate-y-16">
+                <form class="grid grid-cols-1 md:grid-cols-4 gap-4 items-center">
+                    <div class="relative">
+                        <label
+                            class="block text-xs font-bold text-gray-500 dark:text-gray-400 mb-1 uppercase tracking-wide text-left pl-1">Región
+                        </label>
+                        <div class="relative">
+                            <span class="material-icons-round absolute left-3 top-2.5 text-primary">location_on</span>
+                            <select
+                                class="w-full pl-10 pr-8 py-2 border border-gray-200 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent appearance-none bg-white dark:bg-gray-800 dark:text-white outline-none text-[13px]">
+                                <option>Los Lagos</option>
+                                <option>Los Ríos</option>
+                                <option>Araucanía</option>
+                                <option>Biobío</option>
+                                <option>Ñuble</option>
+                                <option>Maule</option>
+                                <option>O'Higgins</option>
+                                <option>Metropolitana</option>
+                                <option>Valparaíso</option>
+                                <option>Coquimbo</option>
+                                <option>Atacama</option>
+                                <option>Antofagasta</option>
+                                <option>Tarapacá</option>
+                                <option>Arica y Parinacota</option>
+                                <option>Magallanes</option>
+                                <option>Aysén</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <label
+                            class="block text-xs font-bold text-gray-500 dark:text-gray-400 mb-1 uppercase tracking-wide text-left pl-1">Tipo
+                            Propiedad</label>
+                        <div class="relative">
+                            <span class="material-icons-round absolute left-3 top-2.5 text-primary">home</span>
+                            <select
+                                class="w-full pl-10 pr-8 py-2 border border-gray-200 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent appearance-none bg-white dark:bg-gray-800 dark:text-white outline-none text-[13px]">
+                                <option>Parcelas</option>
+                                <option>Casas</option>
+                                <option>Fundos</option>
+                            </select>
+                            <span
+                                class="material-icons-round absolute right-3 top-2.5 text-gray-400 pointer-events-none text-sm">expand_more</span>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <label
+                            class="block text-xs font-bold text-gray-500 dark:text-gray-400 mb-1 uppercase tracking-wide text-left pl-1">Presupuesto</label>
+                        <div class="relative">
+                            <span class="material-icons-round absolute left-3 top-2.5 text-primary">attach_money</span>
+                            <select
+                                class="w-full pl-10 pr-8 py-2 border border-gray-200 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent appearance-none bg-white dark:bg-gray-800 dark:text-white outline-none text-[13px]">
+                                <option>Cualquier precio</option>
+                                <option>1.000 - 3.000 UF</option>
+                                <option>3.000 - 6.000 UF</option>
+                                <option>+ 6.000 UF</option>
+                            </select>
+                            <span
+                                class="material-icons-round absolute right-3 top-2.5 text-gray-400 pointer-events-none text-sm">expand_more</span>
+                        </div>
+                    </div>
+                    <div class="pt-5">
+                        <button
+                            class="w-full bg-primary hover:bg-green-600 text-white font-bold py-2.5 px-6 rounded-lg transition shadow-lg flex items-center justify-center gap-2"
+                            type="button">
+                            <span class="material-icons-round">search</span>
+                            Buscar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <section class="py-12 bg-white dark:bg-surface-dark/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-end mb-8">
+                <div>
+                    <h2 class="text-3xl font-extrabold text-secondary dark:text-white">Propiedades Destacadas</h2>
+                    <p class="text-gray-500 dark:text-gray-400 mt-2">Oportunidades seleccionadas en la Región de Los
+                        Lagos y Los Ríos.</p>
+                </div>
+                <a class="hidden sm:flex items-center font-bold text-primary hover:text-green-600 transition" href="#">
+                    Ver todo el catálogo <span class="material-icons-round ml-1 text-lg">arrow_forward</span>
+                </a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div
+                    class="bg-surface-light dark:bg-surface-dark border border-gray-100 dark:border-gray-700 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group">
+                    <div class="relative h-64 overflow-hidden">
+                        <span
+                            class="absolute top-4 left-4 z-10 bg-primary text-white text-xs font-bold px-3 py-1.5 rounded-full flex items-center shadow-md">
+                            <span class="material-icons-round text-sm mr-1">verified_user</span> Revisión Legal OK
+                        </span>
+                        <img alt="Parcela Frutillar"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVZxHauPUDdfjuMxvwDTr0nKfmlLpeWV9C_qdeliuU8qCDEyAA22e8kMJoxD_Ez16zIWZUvyaxWB48W0USTTXkIH_MkdegtPyHlfxc5HAcc6JWiEKvhL__7jiePwaQpxz3oPq_sKY5jtonl6HRuFGamqYSC7hUzGpOXmrllOTtCXgGlaHi9b5znvyjMreAJ2ChydZYcK8MUT1eWUhABk6Kb1pbjUn68dMumWOE3vigH7b-TzoEznusZxriwBBfc2xaxNYXId8hVC4" />
+                        <div
+                            class="absolute bottom-4 right-4 bg-white/90 dark:bg-black/80 backdrop-blur px-3 py-1 rounded-lg text-sm font-bold text-secondary dark:text-white">
+                            Desde UF 1.500
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div
+                            class="flex items-center gap-1 text-xs font-semibold text-primary mb-2 uppercase tracking-wide">
+                            <span class="material-icons-round text-sm">place</span> Frutillar, Región de Los Lagos
+                        </div>
+                        <h3 class="text-xl font-bold text-secondary dark:text-white mb-3 line-clamp-2">Parcela en
+                            Frutillar con Vista al Volcán</h3>
+                        <div
+                            class="flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-300 mb-6 border-t border-gray-100 dark:border-gray-700 pt-4">
+                            <div class="flex items-center gap-1">
+                                <span class="material-icons-round text-gray-400">square_foot</span> 5.000 m²
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <span class="material-icons-round text-gray-400">description</span> Rol Propio
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <span class="material-icons-round text-gray-400">water_drop</span> Fact. Luz/Agua
+                            </div>
+                        </div>
+                        <button
+                            class="w-full bg-secondary dark:bg-gray-700 hover:bg-primary dark:hover:bg-primary text-white font-bold py-3 rounded-xl transition flex justify-center items-center group-hover:bg-primary">
+                            Ver Detalles
+                        </button>
+                    </div>
+                </div>
+                <div
+                    class="bg-surface-light dark:bg-surface-dark border border-gray-100 dark:border-gray-700 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group">
+                    <div class="relative h-64 overflow-hidden">
+                        <span
+                            class="absolute top-4 left-4 z-10 bg-blue-600 text-white text-xs font-bold px-3 py-1.5 rounded-full flex items-center shadow-md">
+                            <span class="material-icons-round text-sm mr-1">star</span> Oportunidad
+                        </span>
+                        <img alt="Casa Valdivia"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfMhteY1fPs7zdKsjV-EfMo6WuBDERzv8IlF_gX7lBBni5_QDP_dCACBiwXs8Y4T9dk26OGV4f1qZyotPjkQnTlMgp5sL2tIoqc9MAuCDhqx_Trx3GfCmnDoXDdaBoHtL6KRoatXoIrqC0eVT04mbFGlN8kBh3PMQmr1CEPf1JObv9afn2IzyRQ547I2bOVACoI0E-Hwmtb2C_XbfYGm-L-YS1u2uwQ5ZgHEIpZ2SzCl_q9OBHG0tz-zLg3o0VkTmNGqiworcCqvQ" />
+                        <div
+                            class="absolute bottom-4 right-4 bg-white/90 dark:bg-black/80 backdrop-blur px-3 py-1 rounded-lg text-sm font-bold text-secondary dark:text-white">
+                            UF 5.200
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div
+                            class="flex items-center gap-1 text-xs font-semibold text-primary mb-2 uppercase tracking-wide">
+                            <span class="material-icons-round text-sm">place</span> Valdivia, Sector Quitacalzón
+                        </div>
+                        <h3 class="text-xl font-bold text-secondary dark:text-white mb-3 line-clamp-2">Casa Nueva en
+                            Condominio Privado</h3>
+                        <div
+                            class="flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-300 mb-6 border-t border-gray-100 dark:border-gray-700 pt-4">
+                            <div class="flex items-center gap-1">
+                                <span class="material-icons-round text-gray-400">home</span> 140 m² const.
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <span class="material-icons-round text-gray-400">square_foot</span> 5.000 m² terr.
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <span class="material-icons-round text-gray-400">bed</span> 4D/3B
+                            </div>
+                        </div>
+                        <button
+                            class="w-full bg-secondary dark:bg-gray-700 hover:bg-primary dark:hover:bg-primary text-white font-bold py-3 rounded-xl transition flex justify-center items-center group-hover:bg-primary">
+                            Ver Detalles
+                        </button>
+                    </div>
+                </div>
+                <div
+                    class="bg-surface-light dark:bg-surface-dark border border-gray-100 dark:border-gray-700 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group">
+                    <div class="relative h-64 overflow-hidden">
+                        <span
+                            class="absolute top-4 left-4 z-10 bg-primary text-white text-xs font-bold px-3 py-1.5 rounded-full flex items-center shadow-md">
+                            <span class="material-icons-round text-sm mr-1">verified_user</span> Revisión Legal OK
+                        </span>
+                        <img alt="Campo Chiloé"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaebi1-5t3I9JMgULb1h-8K6nGXW4k5Mb2DnacgG_CyG1Wlp6E_mzK32UQq6aWmCHT_OhYqeRUNCT_r5w0e3biaV38GZRvGgR5S9xt67cUt4HURHjD4-ALhkYENFIC6HN2FnL9Q2TEfG7wznYd2kGKj4h9x61AkNNF7lyR1LKKdH8_gMayoWwSfcnb6KDFHuZShwHxXbbUkmYPWDbmbeWZNuXwtugPAoCyvMH0V_tjKaIf0wad3SJxXGonjJcUgohp0SDMltpeSDg" />
+                        <div
+                            class="absolute bottom-4 right-4 bg-white/90 dark:bg-black/80 backdrop-blur px-3 py-1 rounded-lg text-sm font-bold text-secondary dark:text-white">
+                            UF 12.000
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div
+                            class="flex items-center gap-1 text-xs font-semibold text-primary mb-2 uppercase tracking-wide">
+                            <span class="material-icons-round text-sm">place</span> Chiloé, Sector Ancud
+                        </div>
+                        <h3 class="text-xl font-bold text-secondary dark:text-white mb-3 line-clamp-2">Fundo Agrícola
+                            con Orilla de Río</h3>
+                        <div
+                            class="flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-300 mb-6 border-t border-gray-100 dark:border-gray-700 pt-4">
+                            <div class="flex items-center gap-1">
+                                <span class="material-icons-round text-gray-400">landscape</span> 20 Hectáreas
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <span class="material-icons-round text-gray-400">water</span> Derechos de Agua
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <span class="material-icons-round text-gray-400">agriculture</span> Suelo Fértil
+                            </div>
+                        </div>
+                        <button
+                            class="w-full bg-secondary dark:bg-gray-700 hover:bg-primary dark:hover:bg-primary text-white font-bold py-3 rounded-xl transition flex justify-center items-center group-hover:bg-primary">
+                            Ver Detalles
+                        </button>
+                    </div>
+                </div>
+                <div
+                    class="bg-surface-light dark:bg-surface-dark border border-gray-100 dark:border-gray-700 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group">
+                    <div class="relative h-64 overflow-hidden">
+                        <span
+                            class="absolute top-4 left-4 z-10 bg-primary text-white text-xs font-bold px-3 py-1.5 rounded-full flex items-center shadow-md">
+                            <span class="material-icons-round text-sm mr-1">verified_user</span> Revisión Legal OK
+                        </span>
+                        <img alt="Puerto Varas"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDN6KfO5DAmickrzAZ7MU-G7k46OZHESR7nWxuKN8OR4ZnV9qPiNMs0bAkneojs3xzTYe_A1VD0GEdEcyWLpjC_ej3fkkMWE8AnfHiitGKOEgS5TCuhJXy4kAwISf5XzXtuVTWvCHPDZJkybU8VV37BKoOIuCaAs8tChhwqwYaICm9jHVghfG7JMeJUASMntvX2KlQK4liu94B356KKlCJydJdklXVIIyS8t63P91E3kLMbW0nHudhfbHsCieNvTLAau-d1tn1_Gdw" />
+                        <div
+                            class="absolute bottom-4 right-4 bg-white/90 dark:bg-black/80 backdrop-blur px-3 py-1 rounded-lg text-sm font-bold text-secondary dark:text-white">
+                            UF 8.500
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div
+                            class="flex items-center gap-1 text-xs font-semibold text-primary mb-2 uppercase tracking-wide">
+                            <span class="material-icons-round text-sm">place</span> Puerto Varas, Camino Ensenada
+                        </div>
+                        <h3 class="text-xl font-bold text-secondary dark:text-white mb-3 line-clamp-2">Cabaña Turística
+                            en Funcionamiento</h3>
+                        <div
+                            class="flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-300 mb-6 border-t border-gray-100 dark:border-gray-700 pt-4">
+                            <div class="flex items-center gap-1">
+                                <span class="material-icons-round text-gray-400">cottage</span> 2 Cabañas
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <span class="material-icons-round text-gray-400">square_foot</span> 5.000 m²
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <span class="material-icons-round text-gray-400">park</span> Bosque Nativo
+                            </div>
+                        </div>
+                        <button
+                            class="w-full bg-secondary dark:bg-gray-700 hover:bg-primary dark:hover:bg-primary text-white font-bold py-3 rounded-xl transition flex justify-center items-center group-hover:bg-primary">
+                            Ver Detalles
+                        </button>
+                    </div>
+                </div>
+                <div
+                    class="bg-surface-light dark:bg-surface-dark border border-gray-100 dark:border-gray-700 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group">
+                    <div class="relative h-64 overflow-hidden">
+                        <img alt="Coyhaique"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuA094Nm-H17qbm7s1Liea0tAfQXRNfJJN3CNIZfK8Uz65XY493IehDoEKJi8YrZUJ_Gv-KrbJIwajFupYaAoDaw0FV2Il935mCkCmpRlx2el7vR2-xvDOQub0vec1EW8Neyl6VVIrOOcquMLATCwbvQ34iLoClQNENHGxaEDf7dFfSeNCOLxEB1rb6J5xH3RE9mit1IEPWPAIqZHx2qJzFLcLl95ZYtTB6oo0lvTbeKdPMKZZXL0NBSWm7s1omo6cygpyNV4URM-qU" />
+                        <div
+                            class="absolute bottom-4 right-4 bg-white/90 dark:bg-black/80 backdrop-blur px-3 py-1 rounded-lg text-sm font-bold text-secondary dark:text-white">
+                            UF 2.100
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div
+                            class="flex items-center gap-1 text-xs font-semibold text-primary mb-2 uppercase tracking-wide">
+                            <span class="material-icons-round text-sm">place</span> Coyhaique, Patagonia
+                        </div>
+                        <h3 class="text-xl font-bold text-secondary dark:text-white mb-3 line-clamp-2">Loteo Exclusivo
+                            Vista Patagonia</h3>
+                        <div
+                            class="flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-300 mb-6 border-t border-gray-100 dark:border-gray-700 pt-4">
+                            <div class="flex items-center gap-1">
+                                <span class="material-icons-round text-gray-400">square_foot</span> 5.000 m²
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <span class="material-icons-round text-gray-400">terrain</span> Topografía Plana
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <span class="material-icons-round text-gray-400">bolt</span> Luz Soterrada
+                            </div>
+                        </div>
+                        <button
+                            class="w-full bg-secondary dark:bg-gray-700 hover:bg-primary dark:hover:bg-primary text-white font-bold py-3 rounded-xl transition flex justify-center items-center group-hover:bg-primary">
+                            Ver Detalles
+                        </button>
+                    </div>
+                </div>
+                <div
+                    class="bg-surface-light dark:bg-surface-dark border border-gray-100 dark:border-gray-700 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group">
+                    <div class="relative h-64 overflow-hidden">
+                        <span
+                            class="absolute top-4 left-4 z-10 bg-primary text-white text-xs font-bold px-3 py-1.5 rounded-full flex items-center shadow-md">
+                            <span class="material-icons-round text-sm mr-1">verified_user</span> Revisión Legal OK
+                        </span>
+                        <img alt="Pucón"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6e5QmFxq-e3OFVNt4yjxS7AyLTV155lxvR4oRN85vdZRsFqdTV2ppAQScw75YnarDUbP9SHSKXmT4M-Ag1-4ApJ9PDpjKqB_5cBwiChCxNWlpfUh5xtRGeqlzTfhUTdeUcxjXUl2MLsnPPbvZgtHr59Sd3adtzRHTQUU0pAUG_EC9NdLGlPvIzn-gTbTM_GDBuCFnot0MzxghBQcwexPZhKbOFqBkFgduKIq6sEBwc2kjZWw_i52WNH3BfFlN_xwh5hsqua6Vq-Y" />
+                        <div
+                            class="absolute bottom-4 right-4 bg-white/90 dark:bg-black/80 backdrop-blur px-3 py-1 rounded-lg text-sm font-bold text-secondary dark:text-white">
+                            UF 3.800
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div
+                            class="flex items-center gap-1 text-xs font-semibold text-primary mb-2 uppercase tracking-wide">
+                            <span class="material-icons-round text-sm">place</span> Pucón, Camino al Volcán
+                        </div>
+                        <h3 class="text-xl font-bold text-secondary dark:text-white mb-3 line-clamp-2">Refugio de
+                            Montaña Eco-Friendly</h3>
+                        <div
+                            class="flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-300 mb-6 border-t border-gray-100 dark:border-gray-700 pt-4">
+                            <div class="flex items-center gap-1">
+                                <span class="material-icons-round text-gray-400">forest</span> Entorno Nativo
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <span class="material-icons-round text-gray-400">square_foot</span> 5.000 m²
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <span class="material-icons-round text-gray-400">security</span> Condominio
+                            </div>
+                        </div>
+                        <button
+                            class="w-full bg-secondary dark:bg-gray-700 hover:bg-primary dark:hover:bg-primary text-white font-bold py-3 rounded-xl transition flex justify-center items-center group-hover:bg-primary">
+                            Ver Detalles
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 text-center">
+                <button
+                    class="inline-flex items-center gap-2 border-2 border-primary text-primary hover:bg-primary hover:text-white font-bold py-3 px-8 rounded-full transition duration-300">
+                    Cargar más propiedades
+                    <span class="material-icons-round">refresh</span>
+                </button>
+            </div>
+        </div>
+    </section>
+    <section class="bg-secondary dark:bg-surface-dark relative overflow-hidden py-16">
+        <div
+            class="absolute inset-0 opacity-10 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+                <div class="md:w-2/3">
+                    <div
+                        class="inline-flex items-center gap-2 bg-primary/20 text-primary border border-primary/30 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide mb-4">
+                        <span class="material-icons-round text-sm">flight_takeoff</span> Servicio Concierge
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4">¿Vives lejos? Nosotros te ayudamos a
+                        venir.</h2>
+                    <p class="text-lg text-gray-300 max-w-2xl leading-relaxed">
+                        Sabemos que comprar a distancia es difícil. Si viajas a conocer un terreno, coordinamos tu
+                        recogida en el aeropuerto, hospedaje y transporte privado para los recorridos.
+                    </p>
+                </div>
+                <div class="md:w-1/3 flex justify-center md:justify-end">
+                    <button
+                        class="bg-primary hover:bg-green-600 text-white font-bold text-lg py-4 px-8 rounded-lg shadow-xl hover:shadow-2xl hover:-translate-y-1 transition transform flex items-center gap-3">
+                        <span class="material-icons-round">calendar_month</span>
+                        Coordinar Visita Guiada
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-20 bg-background-light dark:bg-background-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div
+                    class="bg-white dark:bg-surface-dark p-10 rounded-3xl shadow-lg border border-gray-100 dark:border-gray-800 flex flex-col items-start text-left relative overflow-hidden group">
+                    <div
+                        class="absolute right-0 top-0 w-32 h-32 bg-primary/10 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-150 duration-700">
+                    </div>
+                    <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-6">
+                        <span class="material-icons-round text-3xl">real_estate_agent</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-secondary dark:text-white mb-3">¿Quieres vender tu propiedad?
+                    </h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-8 leading-relaxed flex-grow">
+                        No solo publicamos tu aviso. Te asesoramos legalmente y preparamos tu propiedad para la venta
+                        rápida y transparente.
+                    </p>
+                    <a class="inline-flex items-center text-secondary dark:text-white font-bold border-b-2 border-primary hover:text-primary transition pb-1"
+                        href="#">
+                        Vender con PAIT <span class="material-icons-round ml-2">arrow_forward</span>
+                    </a>
+                </div>
+                <div
+                    class="bg-secondary dark:bg-[#1a2333] p-10 rounded-3xl shadow-lg flex flex-col items-start text-left relative overflow-hidden group">
+                    <div
+                        class="absolute right-0 top-0 w-32 h-32 bg-white/5 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-150 duration-700">
+                    </div>
+                    <div class="w-14 h-14 bg-white/10 rounded-xl flex items-center justify-center text-primary mb-6">
+                        <span class="material-icons-round text-3xl">handshake</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3">Alianza para Corredores</h3>
+                    <p class="text-gray-300 mb-8 leading-relaxed flex-grow">
+                        ¿Tienes propiedades pero no tienes web? Publica con nosotros y apóyate en nuestro equipo
+                        jurídico y técnico.
+                    </p>
+                    <a class="inline-flex items-center text-white font-bold border-b-2 border-primary hover:text-primary transition pb-1"
+                        href="#">
+                        Unirme como Partner <span class="material-icons-round ml-2">arrow_forward</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-12 border-t border-gray-200 dark:border-gray-800">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-xl font-bold text-gray-800 dark:text-white mb-4">Venta de Parcelas y Terrenos en Valdivia,
+                Chiloé y Coyhaique.</h2>
+            <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                En PAIT nos especializamos en la venta de terrenos en el sur de Chile con total seguridad jurídica.
+                Cada proyecto es evaluado rigurosamente en aspectos de topografía, acceso a servicios básicos y títulos
+                de dominio.
+                Encuentra tu parcela ideal rodeada de naturaleza, bosques nativos y cursos de agua, con la tranquilidad
+                de contar con el respaldo de nuestro equipo multidisciplinario.
+            </p>
+        </div>
+    </section>
+    <footer class="bg-gray-50 text-lake-blue pt-20 pb-10 border-t border-gray-200">
+        <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <div class="col-span-1 md:col-span-1">
+                    <a href="/" class="flex items-center gap-2 mb-6 w-[150px]">
+                        <img src="/assets/img/logo-pait-web.svg" alt="PAIT SpA">
+                    </a>
+                    <p class="text-text-muted text-sm leading-relaxed font-light mb-6">
+                        Tu socio estratégico para inversiones inmobiliarias y construcción en el sur de Chile.
+                        Comprometidos con el desarrollo sustentable.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-6 font-display">Navegación</h4>
+                    <ul class="space-y-3 text-text-muted text-sm">
+                        <li><a class="hover:text-primary transition-colors hover:translate-x-1 inline-block transform duration-200"
+                                href="#">Inicio</a></li>
+                        <li><a class="hover:text-primary transition-colors hover:translate-x-1 inline-block transform duration-200"
+                                href="#">Propiedades</a></li>
+                        <li><a class="hover:text-primary transition-colors hover:translate-x-1 inline-block transform duration-200"
+                                href="#">Construcción</a></li>
+                        <li><a class="hover:text-primary transition-colors hover:translate-x-1 inline-block transform duration-200"
+                                href="#">Modelo PAIT</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-6 font-display">Contacto</h4>
+                    <ul class="space-y-4 text-text-muted text-sm">
+                        <li class="flex items-center gap-3">
+                            <span
+                                class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                                <span class="material-symbols-outlined text-sm">mail</span>
+                            </span>
+                            <a class="hover:text-lake-blue transition-colors font-medium"
+                                href="mailto:contacto@pait.cl">contacto@pait.cl</a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span
+                                class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                                <span class="material-symbols-outlined text-sm">call</span>
+                            </span>
+                            <a class="hover:text-lake-blue transition-colors font-medium" href="tel:+56912345678">+56 9
+                                1234 5678</a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span
+                                class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                                <span class="material-symbols-outlined text-sm">location_on</span>
+                            </span>
+                            <span>Puerto Varas, Chile</span>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-6 font-display">Síguenos</h4>
+                    <div class="flex gap-4">
+                        <a class="w-12 h-12 rounded-full bg-white border border-gray-200 flex items-center justify-center hover:bg-lake-blue hover:text-white hover:border-lake-blue transition-all duration-300 shadow-sm"
+                            href="#" aria-label="Instagram">
+                            <i class="fa-brands fa-instagram text-xl"></i>
+                        </a>
+                        <a class="w-12 h-12 rounded-full bg-white border border-gray-200 flex items-center justify-center hover:bg-lake-blue hover:text-white hover:border-lake-blue transition-all duration-300 shadow-sm"
+                            href="#" aria-label="LinkedIn">
+                            <i class="fa-brands fa-linkedin-in text-xl"></i>
+                        </a>
+                        <a class="w-12 h-12 rounded-full bg-white border border-gray-200 flex items-center justify-center hover:bg-lake-blue hover:text-white hover:border-lake-blue transition-all duration-300 shadow-sm"
+                            href="#" aria-label="Facebook">
+                            <i class="fa-brands fa-facebook-f text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="pt-8 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-400 text-sm font-light">
+                <p>© 2025 PAIT SpA. Todos los derechos reservados.</p>
+                <div class="flex gap-8">
+                    <a class="hover:text-lake-blue transition-colors" href="#">Política de Privacidad</a>
+                    <a class="hover:text-lake-blue transition-colors" href="#">Términos y Condiciones</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const menuOpen = document.getElementById('mobile-menu-open');
+        const menuClose = document.getElementById('mobile-menu-close');
+        const menuDrawer = document.getElementById('mobile-menu-drawer');
+        const menuOverlay = document.getElementById('mobile-menu-overlay');
+
+        function toggleMenu(isOpen) {
+            if (isOpen) {
+                menuDrawer.classList.remove('translate-x-full');
+                menuOverlay.classList.remove('opacity-0', 'pointer-events-none');
+                document.body.style.overflow = 'hidden';
+            } else {
+                menuDrawer.classList.add('translate-x-full');
+                menuOverlay.classList.add('opacity-0', 'pointer-events-none');
+                document.body.style.overflow = '';
+            }
+        }
+
+        menuOpen.addEventListener('click', () => toggleMenu(true));
+        menuClose.addEventListener('click', () => toggleMenu(false));
+        menuOverlay.addEventListener('click', () => toggleMenu(false));
+
+        // Soluciones PAIT Accordion
+        const solucionesToggle = document.getElementById('mobile-soluciones-toggle');
+        const solucionesMenu = document.getElementById('mobile-soluciones-menu');
+        const solucionesIcon = document.getElementById('mobile-soluciones-icon');
+
+        solucionesToggle.addEventListener('click', () => {
+            const isHidden = solucionesMenu.classList.contains('hidden');
+            if (isHidden) {
+                solucionesMenu.classList.remove('hidden');
+                solucionesMenu.classList.add('flex');
+                solucionesIcon.classList.add('rotate-180');
+            } else {
+                solucionesMenu.classList.add('hidden');
+                solucionesMenu.classList.remove('flex');
+                solucionesIcon.classList.remove('rotate-180');
+            }
+        });
+
+        // Close menu on link click
+        const mobileLinks = menuDrawer.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => toggleMenu(false));
+        });
+    </script>
+
+</body>
+
+</html>
