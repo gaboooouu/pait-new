@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Detalle de Propiedad - PAIT SpA</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#00BE71",
+                        secondary: "#0F2841",
+                        "background-light": "#F9FAFB",
+                        "background-dark": "#111827",
+                        "surface-light": "#FFFFFF",
+                        "surface-dark": "#1F2937",
+                        "text-main-light": "#1F2937",
+                        "text-main-dark": "#F3F4F6",
+                        "text-sub-light": "#6B7280",
+                        "text-sub-dark": "#9CA3AF",
+                    },
+                    fontFamily: {
+                        sans: ['Manrope', 'sans-serif'],
+                        display: ['Manrope', 'sans-serif'],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                    },
+                },
+            },
+        };
+    </script>
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <style>
+        .swiper-main {
+            width: 100%;
+            height: 70vh;
+        }
+
+        .swiper-thumbnail {
+            height: 100px;
+            box-sizing: border-box;
+            padding: 10px 0;
+            overflow: visible;
+        }
+
+        .swiper-thumbnail .swiper-slide {
+            width: 25%;
+            height: 100%;
+            opacity: 0.4;
+            cursor: pointer;
+            transition: opacity 0.3s, transform 0.3s;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .swiper-thumbnail .swiper-slide:hover {
+            opacity: 0.7;
+        }
+
+        .swiper-thumbnail .swiper-slide-thumb-active {
+            opacity: 1;
+            border: 2px solid #00BE71;
+            transform: scale(1.05);
+        }
+
+        #gallery-modal {
+            transition: visibility 0s, opacity 0.3s linear;
+        }
+
+        #gallery-modal.hidden {
+            display: none;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        #gallery-modal:not(.hidden) {
+            display: flex;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Swiper Navigation Buttons Customization */
+        .swiper-button-next, .swiper-button-prev {
+            color: #00BE71 !important;
+            background: white;
+            width: 50px !important;
+            height: 50px !important;
+            border-radius: 50%;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .swiper-button-next:after, .swiper-button-prev:after {
+            font-size: 20px !important;
+            font-weight: bold;
+        }
+
+        .swiper-pagination-bullet-active {
+            background: #00BE71 !important;
+        }
+    </style>
+</head>
+
+<body
+    class="font-sans bg-gray-50 dark:bg-background-dark text-text-main-light dark:text-text-main-dark transition-colors duration-300 antialiased">
+    <nav class="sticky top-0 z-50 w-full bg-white/90 backdrop-blur-md border-b border-[#e6f4ef]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="../index.html" class="flex items-center gap-3">
+                    <img src="../assets/img/logo-pait-web.svg" alt="PAIT SpA Logo" class="w-24">
+                </a>
+                <div
+                    class="hidden lg:flex items-center gap-10 bg-gray-100/50 px-8 py-2 rounded-full border border-gray-200">
+                    <a class="text-lake-blue text-sm font-bold uppercase tracking-wide hover:text-primary transition-colors"
+                        href="../index.html">Inicio</a>
+                    <a class="text-text-muted text-sm font-medium hover:text-primary transition-colors"
+                        href="../propiedades/index.html">Propiedades</a>
+                    <div class="relative group">
+                        <button
+                            class="flex items-center gap-1 text-text-muted text-sm font-medium hover:text-primary transition-colors outline-none cursor-default">
+                            Soluciones PAIT
+                            <span
+                                class="material-symbols-outlined text-[18px] group-hover:rotate-180 transition-transform duration-300">expand_more</span>
+                        </button>
+                        <div
+                            class="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                            <div
+                                class="w-64 bg-white rounded-2xl shadow-xl border border-gray-100 py-3 overflow-hidden">
+                                <a href="#"
+                                    class="block px-6 py-2.5 text-sm text-text-muted hover:text-primary hover:bg-gray-50 transition-colors">Construcción</a>
+                                <a href="#"
+                                    class="block px-6 py-2.5 text-sm text-text-muted hover:text-primary hover:bg-gray-50 transition-colors">Asesoría
+                                    Legal y Gestión</a>
+                                <a href="#"
+                                    class="block px-6 py-2.5 text-sm text-text-muted hover:text-primary hover:bg-gray-50 transition-colors">Inspección
+                                    Técnica (ITO)</a>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="text-text-muted text-sm font-medium hover:text-primary transition-colors"
+                        href="#">Inversionistas</a>
+                </div>
+                <div class="flex items-center gap-4 sm:gap-6">
+                    <button
+                        class="hidden sm:flex text-sm font-semibold text-gray-600 hover:text-primary items-center gap-1">
+                        <span class="material-symbols-outlined text-[18px]">language</span>
+                        ES | PT
+                    </button>
+                    <button
+                        class="hidden sm:block bg-primary hover:bg-primary-dark text-white text-sm font-bold py-2.5 px-5 rounded-lg transition-colors shadow-lg shadow-primary/20">
+                        Agendar asesoría
+                    </button>
+                    <!-- Hamburger Button -->
+                    <button id="mobile-menu-open"
+                        class="lg:hidden flex items-center p-2 text-lake-blue hover:text-primary transition-colors">
+                        <span class="material-symbols-outlined text-3xl">menu</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu-overlay"
+        class="fixed inset-0 bg-black/50 z-[60] opacity-0 pointer-events-none transition-opacity duration-300 backdrop-blur-sm">
+    </div>
+
+    <!-- Mobile Menu Drawer -->
+    <div id="mobile-menu-drawer"
+        class="fixed top-0 right-0 h-full w-[80%] max-w-sm bg-white z-[70] translate-x-full transition-transform duration-300 ease-in-out shadow-2xl flex flex-col">
+        <div class="p-6 flex justify-between items-center border-b border-gray-100">
+            <img src="../assets/img/logo-pait-web.svg" alt="PAIT SpA Logo" class="w-20">
+            <button id="mobile-menu-close" class="text-lake-blue hover:text-primary transition-colors">
+                <span class="material-symbols-outlined text-3xl">close</span>
+            </button>
+        </div>
+
+        <div class="flex-1 overflow-y-auto py-8 px-6">
+            <nav class="flex flex-col gap-6">
+                <a class="text-lake-blue text-lg font-bold uppercase tracking-wide hover:text-primary transition-colors"
+                    href="../index.html">Inicio</a>
+                <a class="text-text-muted text-lg font-medium hover:text-primary transition-colors"
+                    href="../propiedades/index.html">Propiedades</a>
+                <div class="flex flex-col">
+                    <button id="mobile-soluciones-toggle"
+                        class="flex items-center justify-between text-text-muted text-lg font-medium hover:text-primary transition-colors w-full outline-none">
+                        Soluciones PAIT
+                        <span id="mobile-soluciones-icon"
+                            class="material-symbols-outlined transition-transform duration-300">expand_more</span>
+                    </button>
+                    <div id="mobile-soluciones-menu"
+                        class="hidden flex-col gap-4 pl-4 mt-4 border-l-2 border-primary/20">
+                        <a class="text-text-muted text-base font-medium hover:text-primary transition-colors"
+                            href="#">Construcción</a>
+                        <a class="text-text-muted text-base font-medium hover:text-primary transition-colors"
+                            href="#">Asesoría Legal y Gestión</a>
+                        <a class="text-text-muted text-base font-medium hover:text-primary transition-colors"
+                            href="#">Inspección Técnica (ITO)</a>
+                    </div>
+                </div>
+                <a class="text-text-muted text-lg font-medium hover:text-primary transition-colors"
+                    href="#">Inversionistas</a>
+            </nav>
+
+            <div class="mt-10 pt-10 border-t border-gray-100 flex flex-col gap-6">
+                <button class="flex items-center gap-2 text-gray-600 font-semibold">
+                    <span class="material-symbols-outlined text-[20px]">language</span>
+                    Cambiar idioma: ES | PT
+                </button>
+                <button
+                    class="w-full bg-primary hover:bg-primary-dark text-white text-base font-bold py-4 px-6 rounded-xl transition-colors shadow-lg shadow-primary/20">
+                    Agendar asesoría
+                </button>
+            </div>
+        </div>
+
+        <div class="p-6 border-t border-gray-100 bg-gray-50/50">
+            <p class="text-xs text-gray-400 text-center">© 2025 PAIT SpA. <br>Todos los derechos reservados.</p>
+        </div>
+    </div>
+    <section class="bg-white dark:bg-surface-dark border-b border-gray-100 dark:border-gray-800 pt-8 pb-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row justify-between items-start gap-6">
+                <div class="space-y-2">
+                    <div class="flex items-center gap-2 text-primary font-bold text-xs uppercase tracking-wider">
+                        <span class="bg-primary/10 text-primary px-2 py-1 rounded-md">Venta</span>
+                        <span class="flex items-center gap-1"><span
+                                class="material-symbols-outlined text-sm">location_on</span> Frutillar, Región de Los
+                            Lagos</span>
+                    </div>
+                    <h1
+                        class="text-3xl md:text-4xl font-extrabold text-secondary dark:text-white tracking-tight leading-tight">
+                        Parcela en Frutillar con Vista al Volcán</h1>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm md:text-base">Ref: PAIT-042 • Publicado hace 2
+                        días</p>
+                </div>
+                <div class="flex flex-col md:items-end lg:text-right w-full lg:w-auto mt-2 lg:mt-0">
+                    <p class="text-sm font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide">Precio de
+                        Venta</p>
+                    <div class="flex items-baseline gap-2">
+                        <p class="text-4xl font-extrabold text-secondary dark:text-white">UF 1.500</p>
+                    </div>
+                    <div class="flex items-center gap-2 mt-3">
+                        <span
+                            class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-green-50 text-green-700 text-xs font-bold border border-green-100">
+                            <span class="material-symbols-outlined text-sm">verified_user</span> Revisión Legal OK
+                        </span>
+                        <button
+                            class="flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600 transition">
+                            <span class="material-symbols-outlined text-lg">share</span>
+                        </button>
+                        <button
+                            class="flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600 transition">
+                            <span class="material-symbols-outlined text-lg">favorite</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="mb-12 space-y-4">
+            <div class="h-[400px] md:h-[550px] w-full rounded-2xl overflow-hidden shadow-sm relative group cursor-pointer" onclick="openGallery(0)">
+                <img alt="Vista Principal Parcela" class="w-full h-full object-cover object-bottom transition-transform duration-700 group-hover:scale-105"
+                    src="../assets/img/casa-campo-propiedad.webp" />
+                <button
+                    class="absolute bottom-4 right-4 bg-white/90 hover:bg-white text-secondary px-4 py-2 rounded-lg text-sm font-bold shadow-lg backdrop-blur-sm transition flex items-center gap-2">
+                    <span class="material-symbols-outlined text-lg">grid_view</span> Ver todas las fotos
+                </button>
+            </div>
+            <div class="grid grid-cols-4 gap-4 h-24 md:h-32">
+                <div onclick="openGallery(1)"
+                    class="rounded-xl overflow-hidden cursor-pointer opacity-90 hover:opacity-100 transition ring-2 ring-transparent hover:ring-primary">
+                    <img alt="Terreno" class="w-full h-full object-cover"
+                        src="../assets/img/casa-1.webp" />
+                </div>
+                <div onclick="openGallery(2)"
+                    class="rounded-xl overflow-hidden cursor-pointer opacity-90 hover:opacity-100 transition ring-2 ring-transparent hover:ring-primary">
+                    <img alt="Entorno" class="w-full h-full object-cover"
+                        src="../assets/img/casa-2.webp" />
+                </div>
+                <div onclick="openGallery(3)"
+                    class="rounded-xl overflow-hidden cursor-pointer opacity-90 hover:opacity-100 transition ring-2 ring-transparent hover:ring-primary">
+                    <img alt="Vista Volcán" class="w-full h-full object-cover"
+                        src="../assets/img/casa-3.webp" />
+                </div>
+                <div onclick="openGallery(4)"
+                    class="rounded-xl overflow-hidden cursor-pointer opacity-90 hover:opacity-100 transition ring-2 ring-transparent hover:ring-primary relative">
+                    <img alt="Mapa" class="w-full h-full object-cover"
+                        src="../assets/img/casa-4.webp" />
+                </div>
+            </div>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            <div class="lg:col-span-8 space-y-12">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pb-8 border-b border-gray-200 dark:border-gray-800">
+                    <div class="flex flex-col gap-1">
+                        <span class="text-xs text-gray-500 font-semibold uppercase tracking-wider">Superficie</span>
+                        <div class="flex items-center gap-2 text-secondary dark:text-white font-bold text-lg">
+                            <span class="material-symbols-outlined text-primary text-xl">square_foot</span>
+                            5.000 m²
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-1">
+                        <span class="text-xs text-gray-500 font-semibold uppercase tracking-wider">Documentación</span>
+                        <div class="flex items-center gap-2 text-secondary dark:text-white font-bold text-lg">
+                            <span class="material-symbols-outlined text-primary text-xl">description</span>
+                            Rol Propio
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-1">
+                        <span class="text-xs text-gray-500 font-semibold uppercase tracking-wider">Factibilidad</span>
+                        <div class="flex items-center gap-2 text-secondary dark:text-white font-bold text-lg">
+                            <span class="material-symbols-outlined text-primary text-xl">water_drop</span>
+                            Luz y Agua
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-1">
+                        <span class="text-xs text-gray-500 font-semibold uppercase tracking-wider">Topografía</span>
+                        <div class="flex items-center gap-2 text-secondary dark:text-white font-bold text-lg">
+                            <span class="material-symbols-outlined text-primary text-xl">terrain</span>
+                            Plana / Suave
+                        </div>
+                    </div>
+                </div>
+                <div class="prose prose-lg dark:prose-invert max-w-none text-gray-600 dark:text-gray-300">
+                    <h2 class="text-2xl font-bold text-secondary dark:text-white mb-6">Descripción de la Propiedad</h2>
+                    <p>
+                        Descubre esta espectacular parcela de 5.000 m² ubicada en el corazón de la cuenca del Lago
+                        Llanquihue. A solo 15 minutos del centro de Frutillar, esta propiedad combina la tranquilidad
+                        del campo sureño con una conectividad inmejorable.
+                    </p>
+                    <p>
+                        El terreno destaca por su topografía mayormente plana, facilitando cualquier proyecto de
+                        construcción habitacional. Se encuentra inmerso en un entorno de praderas verdes y bosquetes
+                        nativos de arrayanes y coigües, ofreciendo privacidad y un contacto directo con la naturaleza.
+                    </p>
+                    <p>
+                        Desde el punto más alto del loteo, se puede apreciar una vista parcial imponente a los volcanes
+                        Osorno y Calbuco, ideal para disfrutar de los atardeceres. El condominio cuenta con acceso
+                        controlado, caminos interiores estabilizados y una plusvalía garantizada por el creciente
+                        desarrollo del sector. Es la oportunidad perfecta para tu primera vivienda o casa de descanso.
+                    </p>
+                </div>
+                <div
+                    class="bg-white dark:bg-surface-dark border border-gray-200 dark:border-gray-700 rounded-2xl p-8 shadow-sm">
+                    <div class="flex items-center gap-3 mb-8 pb-4 border-b border-gray-100 dark:border-gray-700">
+                        <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-primary text-2xl">verified</span>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-secondary dark:text-white">Ficha Técnica y Legal PAIT</h3>
+                            <p class="text-sm text-gray-500">Verificación independiente realizada por nuestros expertos
+                            </p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+                        <div>
+                            <h4 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-4">Aspectos Legales
+                            </h4>
+                            <ul class="space-y-4">
+                                <li class="flex items-start justify-between group">
+                                    <span class="text-gray-600 dark:text-gray-300 text-sm">Estudio de Títulos</span>
+                                    <span
+                                        class="font-semibold text-secondary dark:text-white text-sm text-right flex items-center gap-1">
+                                        <span class="w-2 h-2 rounded-full bg-primary"></span> Aprobado y Vigente
+                                    </span>
+                                </li>
+                                <li class="flex items-start justify-between group">
+                                    <span class="text-gray-600 dark:text-gray-300 text-sm">Certificado Informes
+                                        Previos</span>
+                                    <span class="font-semibold text-secondary dark:text-white text-sm text-right">Zona
+                                        Rural</span>
+                                </li>
+                                <li class="flex items-start justify-between group">
+                                    <span class="text-gray-600 dark:text-gray-300 text-sm">Servidumbres</span>
+                                    <span
+                                        class="font-semibold text-secondary dark:text-white text-sm text-right">Inscritas
+                                        CBR</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-4">Factibilidad
+                                Técnica</h4>
+                            <ul class="space-y-4">
+                                <li class="flex items-start justify-between group">
+                                    <span class="text-gray-600 dark:text-gray-300 text-sm">Electricidad</span>
+                                    <span
+                                        class="font-semibold text-secondary dark:text-white text-sm text-right">Postación
+                                        aerea a 50m</span>
+                                </li>
+                                <li class="flex items-start justify-between group">
+                                    <span class="text-gray-600 dark:text-gray-300 text-sm">Agua Potable</span>
+                                    <span class="font-semibold text-secondary dark:text-white text-sm text-right">Pozo
+                                        profundo comunitario</span>
+                                </li>
+                                <li class="flex items-start justify-between group">
+                                    <span class="text-gray-600 dark:text-gray-300 text-sm">Conectividad Digital</span>
+                                    <span class="font-semibold text-secondary dark:text-white text-sm text-right">4G
+                                        Entel/Movistar</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div
+                        class="mt-8 pt-6 border-t border-gray-100 dark:border-gray-700 flex flex-col sm:flex-row justify-between items-center gap-4">
+                        <p class="text-xs text-gray-400 italic">
+                            * Toda la información ha sido verificada por el equipo legal y técnico de PAIT SpA.
+                        </p>
+                        <button
+                            class="inline-flex items-center gap-2 text-primary hover:text-green-700 font-semibold text-sm transition px-4 py-2 rounded-lg hover:bg-green-50">
+                            <span class="material-symbols-outlined text-lg">download</span>
+                            Descargar Carpeta Legal
+                        </button>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <h3 class="text-xl font-bold text-secondary dark:text-white">Ubicación</h3>
+                    <div
+                        class="rounded-2xl overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700 h-[400px] w-full relative group">
+                        <iframe allowfullscreen="" height="100%" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d194883.74312683882!2d-73.18956972750346!3d-41.11721752355462!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x96177e1648a7199b%3A0x7d6c663d2746402e!2sFrutillar%2C%20Los%20Lagos!5e0!3m2!1ses!2scl!4v1716300000000!5m2!1ses!2scl"
+                            style="border:0;" width="100%"></iframe>
+                        <div
+                            class="absolute top-4 right-4 bg-white dark:bg-surface-dark px-4 py-2 rounded-lg shadow-md text-xs font-bold text-gray-600 dark:text-gray-200 flex items-center gap-2 border border-gray-100">
+                            <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span> Ubicación Aproximada
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="lg:col-span-4 space-y-8">
+                <div class="sticky top-24 space-y-6">
+                    <div
+                        class="bg-white dark:bg-surface-dark border border-gray-200 dark:border-gray-700 rounded-2xl shadow-xl shadow-gray-200/50 dark:shadow-none p-6">
+                        <div class="mb-5">
+                            <h3 class="text-lg font-bold text-secondary dark:text-white mb-1">¿Te interesa esta
+                                propiedad?</h3>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Contáctanos para más detalles.</p>
+                        </div>
+                        <form class="space-y-3">
+                            <div class="space-y-1">
+                                <label class="sr-only">Nombre</label>
+                                <div class="relative">
+                                    <span
+                                        class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+                                        <span class="material-symbols-outlined text-sm">person</span>
+                                    </span>
+                                    <input
+                                        class="w-full pl-9 pr-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none dark:text-white placeholder-gray-400 transition"
+                                        placeholder="Nombre completo" type="text" />
+                                </div>
+                            </div>
+                            <div class="space-y-1">
+                                <label class="sr-only">Email</label>
+                                <div class="relative">
+                                    <span
+                                        class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+                                        <span class="material-symbols-outlined text-sm">mail</span>
+                                    </span>
+                                    <input
+                                        class="w-full pl-9 pr-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none dark:text-white placeholder-gray-400 transition"
+                                        placeholder="Correo electrónico" type="email" />
+                                </div>
+                            </div>
+                            <div class="space-y-1">
+                                <label class="sr-only">Teléfono</label>
+                                <div class="relative">
+                                    <span
+                                        class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+                                        <span class="material-symbols-outlined text-sm">phone</span>
+                                    </span>
+                                    <input
+                                        class="w-full pl-9 pr-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none dark:text-white placeholder-gray-400 transition"
+                                        placeholder="+56 9 ..." type="tel" />
+                                </div>
+                            </div>
+                            <div class="space-y-1">
+                                <label class="sr-only">Mensaje</label>
+                                <textarea
+                                    class="w-full px-4 py-3 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none dark:text-white placeholder-gray-400 transition resize-none"
+                                    rows="3">Hola, me interesa la Parcela en Frutillar (Ref: PAIT-042). Por favor contáctenme.</textarea>
+                            </div>
+                            <button
+                                class="w-full bg-primary hover:bg-green-600 text-white font-bold py-3.5 px-6 rounded-xl transition shadow-lg shadow-primary/20 flex items-center justify-center gap-2 mt-2"
+                                type="button">
+                                Solicitar Información
+                            </button>
+                        </form>
+                        <div class="mt-5 pt-5 border-t border-gray-100 dark:border-gray-700 grid grid-cols-2 gap-3">
+                            <button
+                                class="flex items-center justify-center gap-2 text-xs font-semibold text-gray-600 hover:text-green-600 transition py-2 px-3 rounded-lg hover:bg-green-50 dark:hover:bg-gray-800 border border-gray-200 dark:border-gray-700">
+                                <span class="material-symbols-outlined text-lg">perm_phone_msg</span> WhatsApp
+                            </button>
+                            <button
+                                class="flex items-center justify-center gap-2 text-xs font-semibold text-gray-600 hover:text-blue-600 transition py-2 px-3 rounded-lg hover:bg-blue-50 dark:hover:bg-gray-800 border border-gray-200 dark:border-gray-700">
+                                <span class="material-symbols-outlined text-lg">print</span> Imprimir
+                            </button>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-gradient-to-br from-secondary to-[#1a2333] rounded-2xl p-6 shadow-lg text-white relative overflow-hidden group">
+                        <div
+                            class="absolute -right-8 -top-8 w-32 h-32 bg-primary/10 rounded-full blur-2xl group-hover:bg-primary/20 transition">
+                        </div>
+                        <div class="flex items-start gap-4 relative z-10">
+                            <div
+                                class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center flex-shrink-0 backdrop-blur-sm">
+                                <span class="material-symbols-outlined text-xl text-primary">flight_takeoff</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-base mb-1">¿Viajas a verla?</h4>
+                                <p class="text-xs text-gray-300 mb-3 leading-relaxed opacity-90">
+                                    Coordinamos tu recogida y tour guiado.
+                                </p>
+                                <a class="text-primary text-xs font-bold hover:text-white transition flex items-center gap-1 group-hover:translate-x-1 duration-300"
+                                    href="#">
+                                    Servicio Concierge <span
+                                        class="material-symbols-outlined text-sm">arrow_forward</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <section class="bg-white dark:bg-surface-dark border-t border-gray-200 dark:border-gray-800 py-16 mt-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between mb-8">
+                <h2 class="text-2xl font-bold text-secondary dark:text-white">Propiedades Similares</h2>
+                <a class="text-primary font-semibold text-sm hover:underline flex items-center gap-1" href="#">Ver más
+                    propiedades <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div
+                    class="bg-white dark:bg-surface-dark border border-gray-100 dark:border-gray-700 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group">
+                    <a href="index.html" class="relative h-56 overflow-hidden block">
+                        <img alt="Puerto Varas"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDN6KfO5DAmickrzAZ7MU-G7k46OZHESR7nWxuKN8OR4ZnV9qPiNMs0bAkneojs3xzTYe_A1VD0GEdEcyWLpjC_ej3fkkMWE8AnfHiitGKOEgS5TCuhJXy4kAwISf5XzXtuVTWvCHPDZJkybU8VV37BKoOIuCaAs8tChhwqwYaICm9jHVghfG7JMeJUASMntvX2KlQK4liu94B356KKlCJydJdklXVIIyS8t63P91E3kLMbW0nHudhfbHsCieNvTLAau-d1tn1_Gdw" />
+                        <div
+                            class="absolute top-3 left-3 bg-white/90 dark:bg-black/80 backdrop-blur px-2 py-1 rounded-md text-xs font-bold text-secondary dark:text-white shadow-sm">
+                            UF 1.800
+                        </div>
+                    </a>
+                    <div class="p-5">
+                        <div
+                            class="flex items-center gap-1 text-[10px] font-bold text-primary mb-2 uppercase tracking-wide">
+                            <span class="material-symbols-outlined text-sm">place</span> Puerto Varas
+                        </div>
+                        <h3
+                            class="text-lg font-bold text-secondary dark:text-white mb-3 line-clamp-1 group-hover:text-primary transition-colors">
+                            <a href="index.html">Loteo Mirador del Lago</a></h3>
+                        <div
+                            class="flex gap-4 text-xs text-gray-500 dark:text-gray-400 pt-3 border-t border-gray-100 dark:border-gray-700">
+                            <span class="flex items-center gap-1.5"><span
+                                    class="material-symbols-outlined text-base text-gray-400">square_foot</span> 5.000
+                                m²</span>
+                            <span class="flex items-center gap-1.5"><span
+                                    class="material-symbols-outlined text-base text-gray-400">water</span> Agua
+                                APR</span>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="bg-white dark:bg-surface-dark border border-gray-100 dark:border-gray-700 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group">
+                    <a href="index.html" class="relative h-56 overflow-hidden block">
+                        <img alt="Llanquihue"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6e5QmFxq-e3OFVNt4yjxS7AyLTV155lxvR4oRN85vdZRsFqdTV2ppAQScw75YnarDUbP9SHSKXmT4M-Ag1-4ApJ9PDpjKqB_5cBwiChCxNWlpfUh5xtRGeqlzTfhUTdeUcxjXUl2MLsnPPbvZgtHr59Sd3adtzRHTQUU0pAUG_EC9NdLGlPvIzn-gTbTM_GDBuCFnot0MzxghBQcwexPZhKbOFqBkFgduKIq6sEBwc2kjZWw_i52WNH3BfFlN_xwh5hsqua6Vq-Y" />
+                        <div
+                            class="absolute top-3 left-3 bg-white/90 dark:bg-black/80 backdrop-blur px-2 py-1 rounded-md text-xs font-bold text-secondary dark:text-white shadow-sm">
+                            UF 1.450
+                        </div>
+                    </a>
+                    <div class="p-5">
+                        <div
+                            class="flex items-center gap-1 text-[10px] font-bold text-primary mb-2 uppercase tracking-wide">
+                            <span class="material-symbols-outlined text-sm">place</span> Llanquihue
+                        </div>
+                        <h3
+                            class="text-lg font-bold text-secondary dark:text-white mb-3 line-clamp-1 group-hover:text-primary transition-colors">
+                            <a href="index.html">Parcela Bosque Nativo</a></h3>
+                        <div
+                            class="flex gap-4 text-xs text-gray-500 dark:text-gray-400 pt-3 border-t border-gray-100 dark:border-gray-700">
+                            <span class="flex items-center gap-1.5"><span
+                                    class="material-symbols-outlined text-base text-gray-400">square_foot</span> 5.200
+                                m²</span>
+                            <span class="flex items-center gap-1.5"><span
+                                    class="material-symbols-outlined text-base text-gray-400">forest</span>
+                                Bosque</span>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="bg-white dark:bg-surface-dark border border-gray-100 dark:border-gray-700 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group">
+                    <a href="index.html" class="relative h-56 overflow-hidden block">
+                        <img alt="Ensenada"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuA094Nm-H17qbm7s1Liea0tAfQXRNfJJN3CNIZfK8Uz65XY493IehDoEKJi8YrZUJ_Gv-KrbJIwajFupYaAoDaw0FV2Il935mCkCmpRlx2el7vR2-xvDOQub0vec1EW8Neyl6VVIrOOcquMLATCwbvQ34iLoClQNENHGxaEDf7dFfSeNCOLxEB1rb6J5xH3RE9mit1IEPWPAIqZHx2qJzFLcLl95ZYtTB6oo0lvTbeKdPMKZZXL0NBSWm7s1omo6cygpyNV4URM-qU" />
+                        <div
+                            class="absolute top-3 left-3 bg-white/90 dark:bg-black/80 backdrop-blur px-2 py-1 rounded-md text-xs font-bold text-secondary dark:text-white shadow-sm">
+                            UF 1.650
+                        </div>
+                    </a>
+                    <div class="p-5">
+                        <div
+                            class="flex items-center gap-1 text-[10px] font-bold text-primary mb-2 uppercase tracking-wide">
+                            <span class="material-symbols-outlined text-sm">place</span> Ensenada
+                        </div>
+                        <h3
+                            class="text-lg font-bold text-secondary dark:text-white mb-3 line-clamp-1 group-hover:text-primary transition-colors">
+                            <a href="index.html">Vista Volcán Osorno</a></h3>
+                        <div
+                            class="flex gap-4 text-xs text-gray-500 dark:text-gray-400 pt-3 border-t border-gray-100 dark:border-gray-700">
+                            <span class="flex items-center gap-1.5"><span
+                                    class="material-symbols-outlined text-base text-gray-400">square_foot</span> 5.000
+                                m²</span>
+                            <span class="flex items-center gap-1.5"><span
+                                    class="material-symbols-outlined text-base text-gray-400">landscape</span>
+                                Vista</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="bg-gray-50 text-lake-blue pt-20 pb-10 border-t border-gray-200">
+        <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <div class="col-span-1 md:col-span-1">
+                    <a href="/" class="flex items-center gap-2 mb-6 w-[150px]">
+                        <img src="../assets/img/logo-pait-web.svg" alt="PAIT SpA">
+                    </a>
+                    <p class="text-text-muted text-sm leading-relaxed font-light mb-6">
+                        Tu socio estratégico para inversiones inmobiliarias y construcción en el sur de Chile.
+                        Comprometidos con el desarrollo sustentable.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-6 font-display">Navegación</h4>
+                    <ul class="space-y-3 text-text-muted text-sm">
+                        <li><a class="hover:text-primary transition-colors hover:translate-x-1 inline-block transform duration-200"
+                                href="../index.html">Inicio</a></li>
+                        <li><a class="hover:text-primary transition-colors hover:translate-x-1 inline-block transform duration-200"
+                                href="../propiedades/index.html">Propiedades</a></li>
+                        <li><a class="hover:text-primary transition-colors hover:translate-x-1 inline-block transform duration-200"
+                                href="../index.html#metodo">Construcción</a></li>
+                        <li><a class="hover:text-primary transition-colors hover:translate-x-1 inline-block transform duration-200"
+                                href="../index.html#metodo">Modelo PAIT</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-6 font-display">Contacto</h4>
+                    <ul class="space-y-4 text-text-muted text-sm">
+                        <li class="flex items-center gap-3">
+                            <span
+                                class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                                <span class="material-symbols-outlined text-sm">mail</span>
+                            </span>
+                            <a class="hover:text-lake-blue transition-colors font-medium"
+                                href="mailto:contacto@pait.cl">contacto@pait.cl</a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span
+                                class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                                <span class="material-symbols-outlined text-sm">call</span>
+                            </span>
+                            <a class="hover:text-lake-blue transition-colors font-medium" href="tel:+56912345678">+56 9
+                                1234 5678</a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span
+                                class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                                <span class="material-symbols-outlined text-sm">location_on</span>
+                            </span>
+                            <span>Puerto Varas, Chile</span>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-6 font-display">Síguenos</h4>
+                    <div class="flex gap-4">
+                        <a class="w-12 h-12 rounded-full bg-white border border-gray-200 flex items-center justify-center hover:bg-lake-blue hover:text-white hover:border-lake-blue transition-all duration-300 shadow-sm"
+                            href="#" aria-label="Instagram">
+                            <i class="fa-brands fa-instagram text-xl"></i>
+                        </a>
+                        <a class="w-12 h-12 rounded-full bg-white border border-gray-200 flex items-center justify-center hover:bg-lake-blue hover:text-white hover:border-lake-blue transition-all duration-300 shadow-sm"
+                            href="#" aria-label="LinkedIn">
+                            <i class="fa-brands fa-linkedin-in text-xl"></i>
+                        </a>
+                        <a class="w-12 h-12 rounded-full bg-white border border-gray-200 flex items-center justify-center hover:bg-lake-blue hover:text-white hover:border-lake-blue transition-all duration-300 shadow-sm"
+                            href="#" aria-label="Facebook">
+                            <i class="fa-brands fa-facebook-f text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="pt-8 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-400 text-sm font-light">
+                <p>© 2025 PAIT SpA. Todos los derechos reservados.</p>
+                <div class="flex gap-8">
+                    <a class="hover:text-lake-blue transition-colors" href="#">Política de Privacidad</a>
+                    <a class="hover:text-lake-blue transition-colors" href="#">Términos y Condiciones</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Gallery Modal -->
+    <div id="gallery-modal" class="fixed inset-0 z-[100] bg-black/95 flex flex-col hidden overflow-hidden">
+        <!-- Modal Header -->
+        <div class="flex justify-between items-center p-4 md:p-6 text-white z-10">
+            <div class="flex flex-col">
+                <span id="modal-image-title" class="text-lg font-bold">Parcela en Frutillar</span>
+                <span id="modal-image-counter" class="text-sm opacity-70">1 / 5</span>
+            </div>
+            <button id="close-gallery" class="p-2 hover:bg-white/10 rounded-full transition-colors flex items-center justify-center">
+                <span class="material-symbols-outlined text-3xl">close</span>
+            </button>
+        </div>
+
+        <!-- Main Swiper -->
+        <div class="flex-1 relative flex items-center justify-center min-h-0">
+            <div class="swiper swiper-main">
+                <div class="swiper-wrapper" id="main-swiper-wrapper">
+                    <!-- Slides will be injected here if dynamic, or hardcoded -->
+                    <div class="swiper-slide flex items-center justify-center">
+                        <img src="../assets/img/casa-campo-propiedad.webp" class="max-w-full max-h-full object-contain" alt="Gallery 1">
+                    </div>
+                    <div class="swiper-slide flex items-center justify-center">
+                        <img src="../assets/img/casa-1.webp" class="max-w-full max-h-full object-contain" alt="Gallery 2">
+                    </div>
+                    <div class="swiper-slide flex items-center justify-center">
+                        <img src="../assets/img/casa-2.webp" class="max-w-full max-h-full object-contain" alt="Gallery 3">
+                    </div>
+                    <div class="swiper-slide flex items-center justify-center">
+                        <img src="../assets/img/casa-3.webp" class="max-w-full max-h-full object-contain" alt="Gallery 4">
+                    </div>
+                    <div class="swiper-slide flex items-center justify-center">
+                        <img src="../assets/img/casa-4.webp" class="max-w-full max-h-full object-contain" alt="Gallery 5">
+                    </div>
+                </div>
+                <!-- Navigation -->
+                <div class="swiper-button-next !hidden md:!flex"></div>
+                <div class="swiper-button-prev !hidden md:!flex"></div>
+            </div>
+        </div>
+
+        <!-- Thumbs Swiper -->
+        <div class="w-full max-w-5xl mx-auto px-4 pb-6 mt-4">
+            <div class="swiper swiper-thumbnail">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="../assets/img/casa-campo-propiedad.webp" class="w-full h-full object-cover" alt="Thumb 1">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="../assets/img/casa-1.webp" class="w-full h-full object-cover" alt="Thumb 2">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="../assets/img/casa-2.webp" class="w-full h-full object-cover" alt="Thumb 3">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="../assets/img/casa-3.webp" class="w-full h-full object-cover" alt="Thumb 4">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="../assets/img/casa-4.webp" class="w-full h-full object-cover" alt="Thumb 5">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+        // Swiper Initialization
+        let swiperThumbs;
+        let swiperMain;
+
+        function initSwiper() {
+            swiperThumbs = new Swiper(".swiper-thumbnail", {
+                spaceBetween: 12,
+                slidesPerView: 4,
+                freeMode: true,
+                watchSlidesProgress: true,
+                breakpoints: {
+                    640: { slidesPerView: 5 },
+                    1024: { slidesPerView: 6 }
+                }
+            });
+
+            swiperMain = new Swiper(".swiper-main", {
+                spaceBetween: 10,
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+                thumbs: {
+                    swiper: swiperThumbs,
+                },
+                on: {
+                    slideChange: function () {
+                        document.getElementById('modal-image-counter').textContent = 
+                            `${this.activeIndex + 1} / ${this.slides.length}`;
+                    }
+                }
+            });
+        }
+
+        // Gallery Logic
+        const galleryModal = document.getElementById('gallery-modal');
+        const closeGallery = document.getElementById('close-gallery');
+        const galleryTriggers = document.querySelectorAll('.gallery-trigger');
+
+        function openGallery(index) {
+            galleryModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            
+            if (!swiperMain) {
+                initSwiper();
+            }
+            
+            swiperMain.slideTo(index, 0);
+        }
+
+        closeGallery.addEventListener('click', () => {
+            galleryModal.classList.add('hidden');
+            document.body.style.overflow = '';
+        });
+
+        // Close on escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !galleryModal.classList.contains('hidden')) {
+                galleryModal.classList.add('hidden');
+                document.body.style.overflow = '';
+            }
+        });
+
+        const menuOpen = document.getElementById('mobile-menu-open');
+        const menuClose = document.getElementById('mobile-menu-close');
+        const menuDrawer = document.getElementById('mobile-menu-drawer');
+        const menuOverlay = document.getElementById('mobile-menu-overlay');
+
+        function toggleMenu(isOpen) {
+            if (isOpen) {
+                menuDrawer.classList.remove('translate-x-full');
+                menuOverlay.classList.remove('opacity-0', 'pointer-events-none');
+                document.body.style.overflow = 'hidden';
+            } else {
+                menuDrawer.classList.add('translate-x-full');
+                menuOverlay.classList.add('opacity-0', 'pointer-events-none');
+                document.body.style.overflow = '';
+            }
+        }
+
+        menuOpen.addEventListener('click', () => toggleMenu(true));
+        menuClose.addEventListener('click', () => toggleMenu(false));
+        menuOverlay.addEventListener('click', () => toggleMenu(false));
+
+        // Soluciones PAIT Accordion
+        const solucionesToggle = document.getElementById('mobile-soluciones-toggle');
+        const solucionesMenu = document.getElementById('mobile-soluciones-menu');
+        const solucionesIcon = document.getElementById('mobile-soluciones-icon');
+
+        solucionesToggle.addEventListener('click', () => {
+            const isHidden = solucionesMenu.classList.contains('hidden');
+            if (isHidden) {
+                solucionesMenu.classList.remove('hidden');
+                solucionesMenu.classList.add('flex');
+                solucionesIcon.classList.add('rotate-180');
+            } else {
+                solucionesMenu.classList.add('hidden');
+                solucionesMenu.classList.remove('flex');
+                solucionesIcon.classList.remove('rotate-180');
+            }
+        });
+
+        // Close menu on link click
+        const mobileLinks = menuDrawer.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => toggleMenu(false));
+        });
+    </script>
+
+</body>
+
+</html>
