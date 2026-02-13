@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>PAIT Diseño y Construcción</title>
+    <meta content="Diseño y Construcción de viviendas y proyectos sanitarios en el Sur de Chile." name="description" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#00BE71", // The specific green from the request
+                        secondary: "#1F2937", // Darker blue/grey for text
+                        accent: "#10B981",
+                        "background-light": "#F9FAFB",
+                        "background-dark": "#111827",
+                        "surface-light": "#FFFFFF",
+                        "surface-dark": "#1F2937",
+                        "text-light": "#1F2937",
+                        "text-dark": "#F3F4F6",
+                        "text-muted-light": "#6B7280",
+                        "text-muted-dark": "#9CA3AF",
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Inter', 'serif'],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        .hero-overlay {
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.7) 100%);
+        }
+        @keyframes downToUpLoop {
+            0% {
+                transform: translate(-50%, 0);
+            }
+
+            50% {
+                transform: translate(-50%, -10px);
+            }
+
+            100% {
+                transform: translate(-50%, 0);
+            }
+        }
+
+        .down-to-up-loop {
+            animation: downToUpLoop 0.8s ease-in-out infinite;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-sans antialiased selection:bg-primary selection:text-white transition-colors duration-300">
+    <nav class="sticky top-0 z-50 w-full bg-white/90 backdrop-blur-md border-b border-[#e6f4ef]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="../index.html" class="flex items-center gap-3">
+                    <img src="../assets/img/logo-pait-web.svg" alt="PAIT SpA Logo" class="w-24">
+                </a>
+                <div
+                    class="hidden lg:flex items-center gap-10 bg-gray-100/50 px-8 py-2 rounded-full border border-gray-200">
+                    <a class="text-lake-blue text-sm font-bold uppercase tracking-wide hover:text-primary transition-colors"
+                        href="../index.html">Inicio</a>
+                    <a class="text-text-muted text-sm font-medium hover:text-primary transition-colors"
+                        href="../propiedades/index.html">Propiedades</a>
+                    <div class="relative group">
+                        <button
+                            class="flex items-center gap-1 text-text-muted text-sm font-medium hover:text-primary transition-colors outline-none cursor-default">
+                            Soluciones PAIT
+                            <span
+                                class="material-symbols-outlined text-[18px] group-hover:rotate-180 transition-transform duration-300">expand_more</span>
+                        </button>
+                        <div
+                            class="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                            <div
+                                class="w-64 bg-white rounded-2xl shadow-xl border border-gray-100 py-3 overflow-hidden">
+                                <a href="index.html"
+                                    class="block px-6 py-2.5 text-sm text-text-muted hover:text-primary hover:bg-gray-50 transition-colors">Construcción</a>
+                                <a href="#"
+                                    class="block px-6 py-2.5 text-sm text-text-muted hover:text-primary hover:bg-gray-50 transition-colors">Asesoría
+                                    Legal y Gestión</a>
+                                <a href="#"
+                                    class="block px-6 py-2.5 text-sm text-text-muted hover:text-primary hover:bg-gray-50 transition-colors">Inspección
+                                    Técnica (ITO)</a>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="text-text-muted text-sm font-medium hover:text-primary transition-colors"
+                        href="#">Inversionistas</a>
+                </div>
+                <div class="flex items-center gap-4 sm:gap-6">
+                    <button
+                        class="hidden sm:flex text-sm font-semibold text-gray-600 hover:text-primary items-center gap-1">
+                        <span class="material-symbols-outlined text-[18px]">language</span>
+                        ES | PT
+                    </button>
+                    <button
+                        class="hidden sm:block bg-primary hover:bg-primary-dark text-white text-sm font-bold py-2.5 px-5 rounded-lg transition-colors shadow-lg shadow-primary/20">
+                        Agendar asesoría
+                    </button>
+                    <!-- Hamburger Button -->
+                    <button id="mobile-menu-open"
+                        class="lg:hidden flex items-center p-2 text-lake-blue hover:text-primary transition-colors">
+                        <span class="material-symbols-outlined text-3xl">menu</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu-overlay"
+        class="fixed inset-0 bg-black/50 z-[60] opacity-0 pointer-events-none transition-opacity duration-300 backdrop-blur-sm">
+    </div>
+
+    <!-- Mobile Menu Drawer -->
+    <div id="mobile-menu-drawer"
+        class="fixed top-0 right-0 h-full w-[80%] max-w-sm bg-white z-[70] translate-x-full transition-transform duration-300 ease-in-out shadow-2xl flex flex-col">
+        <div class="p-6 flex justify-between items-center border-b border-gray-100">
+            <img src="../assets/img/logo-pait-web.svg" alt="PAIT SpA Logo" class="w-20">
+            <button id="mobile-menu-close" class="text-lake-blue hover:text-primary transition-colors">
+                <span class="material-symbols-outlined text-3xl">close</span>
+            </button>
+        </div>
+
+        <div class="flex-1 overflow-y-auto py-8 px-6">
+            <nav class="flex flex-col gap-6">
+                <a class="text-lake-blue text-lg font-bold uppercase tracking-wide hover:text-primary transition-colors"
+                    href="../index.html">Inicio</a>
+                <a class="text-text-muted text-lg font-medium hover:text-primary transition-colors"
+                    href="../propiedades/index.html">Propiedades</a>
+                <div class="flex flex-col">
+                    <button id="mobile-soluciones-toggle"
+                        class="flex items-center justify-between text-text-muted text-lg font-medium hover:text-primary transition-colors w-full outline-none">
+                        Soluciones PAIT
+                        <span id="mobile-soluciones-icon"
+                            class="material-symbols-outlined transition-transform duration-300">expand_more</span>
+                    </button>
+                    <div id="mobile-soluciones-menu"
+                        class="hidden flex-col gap-4 pl-4 mt-4 border-l-2 border-primary/20">
+                        <a class="text-text-muted text-base font-medium hover:text-primary transition-colors"
+                            href="index.html">Construcción</a>
+                        <a class="text-text-muted text-base font-medium hover:text-primary transition-colors"
+                            href="#">Asesoría Legal y Gestión</a>
+                        <a class="text-text-muted text-base font-medium hover:text-primary transition-colors"
+                            href="#">Inspección Técnica (ITO)</a>
+                    </div>
+                </div>
+                <a class="text-text-muted text-lg font-medium hover:text-primary transition-colors"
+                    href="#">Inversionistas</a>
+            </nav>
+
+            <div class="mt-10 pt-10 border-t border-gray-100 flex flex-col gap-6">
+                <button class="flex items-center gap-2 text-gray-600 font-semibold">
+                    <span class="material-symbols-outlined text-[20px]">language</span>
+                    Cambiar idioma: ES | PT
+                </button>
+                <button
+                    class="w-full bg-primary hover:bg-primary-dark text-white text-base font-bold py-4 px-6 rounded-xl transition-colors shadow-lg shadow-primary/20">
+                    Agendar asesoría
+                </button>
+            </div>
+        </div>
+
+        <div class="p-6 border-t border-gray-100 bg-gray-50/50">
+            <p class="text-xs text-gray-400 text-center">© 2025 PAIT SpA. <br>Todos los derechos reservados.</p>
+        </div>
+    </div>
+    <div class="relative h-[85vh] w-full flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img alt="Construction of a modern wooden house in a southern Chile forest setting"
+                class="w-full h-full object-cover object-bottom"
+                src="../assets/img/construccion-rio_resultado1.webp" />
+            <div class="hero-overlay absolute inset-0"></div>
+        </div>
+        <div class="relative z-10 max-w-4xl mx-auto px-4 text-center mt-16">
+            <h1 class="font-display text-5xl md:text-7xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
+                Construimos tu visión,<br />
+                <span class="text-primary">sin importar el tamaño.</span>
+            </h1>
+            <p
+                class="text-lg md:text-xl text-gray-100 mb-10 max-w-2xl mx-auto font-light leading-relaxed drop-shadow-md">
+                Desde grandes viviendas hasta proyectos sanitarios y ampliaciones. En PAIT, cada metro cuadrado recibe
+                la misma excelencia profesional.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a class="bg-primary hover:bg-green-600 text-white text-base font-bold py-4 px-8 rounded-full transition-all shadow-lg hover:shadow-green-500/30 flex items-center justify-center gap-2"
+                    href="#contacto">
+                    Cotizar mi Proyecto
+                    <span class="material-icons-outlined text-sm">arrow_forward</span>
+                </a>
+            </div>
+            <div class="absolute bottom-[-15vh] left-1/2 transform -translate-x-1/2 down-to-up-loop">
+                <span class="material-icons-outlined text-white text-4xl opacity-80">keyboard_arrow_down</span>
+            </div>
+        </div>
+    </div>
+    <section class="py-20 md:py-28 bg-white dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="order-2 lg:order-1 relative">
+                    <div class="absolute -top-6 -left-6 w-24 h-24 bg-primary/10 rounded-full z-0"></div>
+                    <img alt="Arquitecto revisando planos en obra"
+                        class="relative z-10 w-full h-96 object-cover rounded-2xl shadow-xl grayscale-[10%] hover:grayscale-0 transition-all duration-500"
+                        src="../assets/img/pait-construccion.webp" />
+                    <div
+                        class="absolute bottom-6 right-6 bg-surface-light dark:bg-surface-dark p-4 rounded-xl shadow-lg border-l-4 border-primary z-20 max-w-xs hidden sm:block">
+                        <p class="text-xs font-bold text-primary uppercase tracking-wider mb-1">EQUIPO
+                            MULTIDISCIPLINARIO</p>
+                        <p class="text-sm text-text-muted-light dark:text-text-muted-dark">Arquitectos, Ingenieros y
+                            Técnicos trabajando juntos.</p>
+                    </div>
+                </div>
+                <div class="order-1 lg:order-2">
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="w-8 h-[2px] bg-primary"></span>
+                        <span class="text-sm font-bold tracking-widest uppercase text-primary">Nuestra Filosofía</span>
+                    </div>
+                    <h2
+                        class="font-display text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white leading-tight">
+                        Tu proyecto es <br class="hidden md:block" />
+                        <span class="relative inline-block">
+                            nuestra prioridad.
+                            <span class="absolute bottom-1 left-0 w-full h-3 bg-primary/20 -z-10"></span>
+                        </span>
+                    </h2>
+                    <p class="text-lg text-text-muted-light dark:text-text-muted-dark mb-6 leading-relaxed">
+                        Entendemos que construir en el sur de Chile presenta desafíos únicos. Ya sea una solución
+                        sanitaria rural o la casa de tus sueños frente al lago, aplicamos el mismo rigor técnico.
+                    </p>
+                    <p class="text-lg text-text-muted-light dark:text-text-muted-dark mb-8 leading-relaxed">
+                        No somos solo constructores; somos tus socios estratégicos en terreno. Nos aseguramos de que
+                        cada detalle cumpla con la normativa y resista el clima austral.
+                    </p>
+                    <ul class="space-y-3">
+                        <li class="flex items-center gap-3">
+                            <span
+                                class="bg-primary/10 text-primary p-1 rounded-full material-icons-outlined text-sm">check</span>
+                            <span class="text-gray-700 dark:text-gray-300 font-medium">Supervisión técnica constante
+                                (ITO)</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span
+                                class="bg-primary/10 text-primary p-1 rounded-full material-icons-outlined text-sm">check</span>
+                            <span class="text-gray-700 dark:text-gray-300 font-medium">Cumplimiento normativo
+                                garantizado</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span
+                                class="bg-primary/10 text-primary p-1 rounded-full material-icons-outlined text-sm">check</span>
+                            <span class="text-gray-700 dark:text-gray-300 font-medium">Transparencia en costos y
+                                plazos</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-20 bg-background-light dark:bg-gray-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-primary font-bold tracking-wider text-sm uppercase">Soluciones Integrales</span>
+                <h2 class="font-display text-3xl md:text-4xl font-bold mt-2 text-gray-900 dark:text-white">Lo que
+                    construimos para ti</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div
+                    class="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 group border border-transparent hover:border-primary/20 dark:border-gray-800">
+                    <div
+                        class="w-14 h-14 bg-green-50 dark:bg-green-900/20 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <span class="material-icons-outlined text-primary text-3xl">home_work</span>
+                    </div>
+                    <h3
+                        class="text-xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-primary transition-colors">
+                        Vivienda y Arquitectura</h3>
+                    <p class="text-text-muted-light dark:text-text-muted-dark leading-relaxed mb-6">
+                        Diseño y construcción integral de viviendas personalizadas. Materializamos tus ideas respetando
+                        el entorno y optimizando espacios.
+                    </p>
+                    <div class="mt-6 rounded-xl overflow-hidden shadow-md">
+                        <img src="../assets/img/casa-construccion-pait.webp" alt="Vivienda y Arquitectura" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                </div>
+                <div
+                    class="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 group border border-transparent hover:border-primary/20 dark:border-gray-800">
+                    <div
+                        class="w-14 h-14 bg-blue-50 dark:bg-blue-900/20 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <span class="material-icons-outlined text-primary text-3xl">water_drop</span>
+                    </div>
+                    <h3
+                        class="text-xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-primary transition-colors">
+                        Especialidades Sanitarias</h3>
+                    <p class="text-text-muted-light dark:text-text-muted-dark leading-relaxed mb-6">
+                        Soluciones vitales para parcelas rurales: proyectos de agua potable, alcantarillado, y fosas
+                        sépticas certificados.
+                    </p>
+                    <div class="mt-6 rounded-xl overflow-hidden shadow-md">
+                        <img src="../assets/img/fosa-septica.webp" alt="Especialidades Sanitarias" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                </div>
+                <div
+                    class="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 group border border-transparent hover:border-primary/20 dark:border-gray-800">
+                    <div
+                        class="w-14 h-14 bg-emerald-50 dark:bg-emerald-900/20 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <span class="material-icons-outlined text-primary text-3xl">eco</span>
+                    </div>
+                    <h3
+                        class="text-xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-primary transition-colors">
+                        Sustentabilidad y Eficiencia</h3>
+                    <p class="text-text-muted-light dark:text-text-muted-dark leading-relaxed mb-6">
+                        Implementación de sistemas de cosecha de aguas lluvias y eficiencia energética para reducir la
+                        huella ambiental.
+                    </p>
+                    <div class="mt-6 rounded-xl overflow-hidden shadow-md">
+                        <img src="../assets/img/aguas-lluvias.webp" alt="Sustentabilidad y Eficiencia" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-20 md:py-28 bg-white dark:bg-gray-900 overflow-hidden relative">
+        <div
+            class="absolute top-0 right-0 w-1/3 h-full bg-background-light dark:bg-gray-800/50 -skew-x-12 transform translate-x-20 z-0">
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="mb-16">
+                <span class="text-primary font-bold tracking-wider text-sm uppercase">El Método PAIT</span>
+                <h2 class="font-display text-3xl md:text-4xl font-bold mt-2 text-gray-900 dark:text-white">Paso a paso
+                    hacia tu obra</h2>
+            </div>
+            <div class="relative">
+                <div class="hidden md:block absolute top-8 left-0 w-full h-1 bg-gray-100 dark:bg-gray-800 rounded-full">
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                    <div class="relative group">
+                        <div
+                            class="w-16 h-16 bg-white dark:bg-gray-800 border-4 border-primary rounded-full flex items-center justify-center text-2xl font-bold text-primary mb-6 relative z-10 shadow-lg group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                            1
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">Reunión y Diseño</h3>
+                        <p class="text-text-muted-light dark:text-text-muted-dark text-sm leading-relaxed">
+                            Analizamos tu terreno, topografía y coeficientes de constructibilidad. Aclaramos dudas
+                            iniciales para diseñar una propuesta viable.
+                        </p>
+                    </div>
+                    <div class="relative group">
+                        <div
+                            class="w-16 h-16 bg-white dark:bg-gray-800 border-4 border-gray-200 dark:border-gray-700 group-hover:border-primary rounded-full flex items-center justify-center text-2xl font-bold text-gray-400 dark:text-gray-500 mb-6 relative z-10 shadow-md group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                            2
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">Presupuesto Transparente</h3>
+                        <p class="text-text-muted-light dark:text-text-muted-dark text-sm leading-relaxed">
+                            Buscamos los mejores materiales y proveedores para optimizar costos sin sacrificar calidad,
+                            entregando un presupuesto detallado.
+                        </p>
+                    </div>
+                    <div class="relative group">
+                        <div
+                            class="w-16 h-16 bg-white dark:bg-gray-800 border-4 border-gray-200 dark:border-gray-700 group-hover:border-primary rounded-full flex items-center justify-center text-2xl font-bold text-gray-400 dark:text-gray-500 mb-6 relative z-10 shadow-md group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                            3
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">Ejecución Experta</h3>
+                        <p class="text-text-muted-light dark:text-text-muted-dark text-sm leading-relaxed">
+                            Mano de obra calificada y supervisión técnica constante. Te mantenemos informado con
+                            reportes de avance semanales.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-20 px-4" id="contacto">
+        <div class="max-w-6xl mx-auto">
+            <div class="bg-gray-900 dark:bg-black rounded-3xl overflow-hidden shadow-2xl relative">
+                <div class="absolute inset-0">
+                    <img alt="Forest texture" class="w-full h-full object-cover opacity-30 mix-blend-overlay"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDexMKLV9pbvY7mGCMbfWEtjZir-_Ad4Sc7Ls_3S-EG1YeUvJAFf-dJ8PuL4lHXGvrr9VHE6v-NhRYwBOJjjbs0PCVCq_mtgVHUoXSQWkm_BwhbW8HOhXYkcOBChDAGtByaz7CiEegwqREqJgTZ5ItUOdl1w5OOoTcvZk9LLLmtrVYSDBDStxJADZrQNNYEoy0CxJqb6MHaO7me3tq0XJWmOD9XzIDXcwzTPW1HGOLdHFRO2mvDAU94JkOT1zW76flFYRTAr76tXYc" />
+                    <div class="absolute inset-0 bg-gradient-to-r from-gray-900 via-gray-900/90 to-transparent"></div>
+                </div>
+                <div class="relative z-10 p-10 md:p-16 flex flex-col md:flex-row items-center justify-between gap-10">
+                    <div class="md:w-2/3">
+                        <span
+                            class="inline-block py-1 px-3 rounded-full bg-primary/20 text-primary text-xs font-bold uppercase tracking-wider mb-4 border border-primary/30">
+                            Agenda Abierta
+                        </span>
+                        <h2 class="font-display text-3xl md:text-5xl font-bold text-white mb-6">
+                            ¿Tienes un terreno y no sabes por dónde empezar?
+                        </h2>
+                        <p class="text-gray-300 text-lg max-w-xl">
+                            Deja los tecnicismos en nuestras manos. Agenda una reunión gratuita de 30 minutos y
+                            evaluemos el potencial de tu proyecto.
+                        </p>
+                    </div>
+                    <div class="md:w-1/3 flex justify-center md:justify-end w-full">
+                        <button
+                            class="w-full md:w-auto bg-primary hover:bg-green-600 text-white font-bold py-4 px-8 rounded-xl transition-all shadow-lg hover:shadow-green-500/40 transform hover:-translate-y-1 flex items-center justify-center gap-2 text-center">
+                            <span class="material-icons-outlined">calendar_month</span>
+                            Hablemos de tu Construcción
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="bg-gray-50 text-lake-blue pt-20 pb-10 border-t border-gray-200">
+        <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <div class="col-span-1 md:col-span-1">
+                    <a href="/" class="flex items-center gap-2 mb-6 w-[150px]">
+                        <img src="../assets/img/logo-pait-web.svg" alt="PAIT SpA">
+                    </a>
+                    <p class="text-text-muted text-sm leading-relaxed font-light mb-6">
+                        Tu socio estratégico para inversiones inmobiliarias y construcción en el sur de Chile.
+                        Comprometidos con el desarrollo sustentable.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-6 font-display">Navegación</h4>
+                    <ul class="space-y-3 text-text-muted text-sm">
+                        <li><a class="hover:text-primary transition-colors hover:translate-x-1 inline-block transform duration-200"
+                                href="../index.html">Inicio</a></li>
+                        <li><a class="hover:text-primary transition-colors hover:translate-x-1 inline-block transform duration-200"
+                                href="../propiedades/index.html">Propiedades</a></li>
+                        <li><a class="hover:text-primary transition-colors hover:translate-x-1 inline-block transform duration-200"
+                                 href="index.html">Construcción</a></li>
+                        <li><a class="hover:text-primary transition-colors hover:translate-x-1 inline-block transform duration-200"
+                                href="../index.html#metodo">Modelo PAIT</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-6 font-display">Contacto</h4>
+                    <ul class="space-y-4 text-text-muted text-sm">
+                        <li class="flex items-center gap-3">
+                            <span
+                                class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                                <span class="material-symbols-outlined text-sm">mail</span>
+                            </span>
+                            <a class="hover:text-lake-blue transition-colors font-medium"
+                                href="mailto:contacto@pait.cl">contacto@pait.cl</a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span
+                                class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                                <span class="material-symbols-outlined text-sm">call</span>
+                            </span>
+                            <a class="hover:text-lake-blue transition-colors font-medium" href="tel:+56912345678">+56 9
+                                1234 5678</a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span
+                                class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                                <span class="material-symbols-outlined text-sm">location_on</span>
+                            </span>
+                            <span>Puerto Varas, Chile</span>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-6 font-display">Síguenos</h4>
+                    <div class="flex gap-4">
+                        <a class="w-12 h-12 rounded-full bg-white border border-gray-200 flex items-center justify-center hover:bg-lake-blue hover:text-white hover:border-lake-blue transition-all duration-300 shadow-sm"
+                            href="#" aria-label="Instagram">
+                            <i class="fa-brands fa-instagram text-xl"></i>
+                        </a>
+                        <a class="w-12 h-12 rounded-full bg-white border border-gray-200 flex items-center justify-center hover:bg-lake-blue hover:text-white hover:border-lake-blue transition-all duration-300 shadow-sm"
+                            href="#" aria-label="LinkedIn">
+                            <i class="fa-brands fa-linkedin-in text-xl"></i>
+                        </a>
+                        <a class="w-12 h-12 rounded-full bg-white border border-gray-200 flex items-center justify-center hover:bg-lake-blue hover:text-white hover:border-lake-blue transition-all duration-300 shadow-sm"
+                            href="#" aria-label="Facebook">
+                            <i class="fa-brands fa-facebook-f text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="pt-8 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-400 text-sm font-light">
+                <p>© 2025 PAIT SpA. Todos los derechos reservados.</p>
+                <div class="flex gap-8">
+                    <a class="hover:text-lake-blue transition-colors" href="#">Política de Privacidad</a>
+                    <a class="hover:text-lake-blue transition-colors" href="#">Términos y Condiciones</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const menuOpen = document.getElementById('mobile-menu-open');
+        const menuClose = document.getElementById('mobile-menu-close');
+        const menuDrawer = document.getElementById('mobile-menu-drawer');
+        const menuOverlay = document.getElementById('mobile-menu-overlay');
+
+        function toggleMenu(isOpen) {
+            if (isOpen) {
+                menuDrawer.classList.remove('translate-x-full');
+                menuOverlay.classList.remove('opacity-0', 'pointer-events-none');
+                document.body.style.overflow = 'hidden';
+            } else {
+                menuDrawer.classList.add('translate-x-full');
+                menuOverlay.classList.add('opacity-0', 'pointer-events-none');
+                document.body.style.overflow = '';
+            }
+        }
+
+        menuOpen.addEventListener('click', () => toggleMenu(true));
+        menuClose.addEventListener('click', () => toggleMenu(false));
+        menuOverlay.addEventListener('click', () => toggleMenu(false));
+
+        // Soluciones PAIT Accordion
+        const solucionesToggle = document.getElementById('mobile-soluciones-toggle');
+        const solucionesMenu = document.getElementById('mobile-soluciones-menu');
+        const solucionesIcon = document.getElementById('mobile-soluciones-icon');
+
+        solucionesToggle.addEventListener('click', () => {
+            const isHidden = solucionesMenu.classList.contains('hidden');
+            if (isHidden) {
+                solucionesMenu.classList.remove('hidden');
+                solucionesMenu.classList.add('flex');
+                solucionesIcon.classList.add('rotate-180');
+            } else {
+                solucionesMenu.classList.add('hidden');
+                solucionesMenu.classList.remove('flex');
+                solucionesIcon.classList.remove('rotate-180');
+            }
+        });
+
+        // Close menu on link click
+        const mobileLinks = menuDrawer.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => toggleMenu(false));
+        });
+    </script>
+
+</body>
+
+</html>
