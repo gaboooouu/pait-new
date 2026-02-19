@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>PAIT | Inspección Técnica de Obras (ITO)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00BE71",
+                        "primary-dark": "#009e5f",
+                        "background-light": "#f0f2f4",
+                        "lake-blue": "#0a2342",
+                        "surface-light": "#ffffff",
+                        "text-main": "#101815",
+                        "text-muted": "#4b5563",
+                        "background-dark": "#0f231b",
+                        "slate-800": "#1e293b",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        @keyframes downToUpLoop {
+            0% {
+                transform: translate(-50%, 0);
+            }
+
+            50% {
+                transform: translate(-50%, -10px);
+            }
+
+            100% {
+                transform: translate(-50%, 0);
+            }
+        }
+
+        .down-to-up-loop {
+            animation: downToUpLoop 0.8s ease-in-out infinite;
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+        }
+
+        .dark .glass-effect {
+            background: rgba(22, 30, 44, 0.85);
+            backdrop-filter: blur(8px);
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-[#0c1d16] font-display overflow-x-hidden antialiased">
+    <nav class="sticky top-0 z-50 w-full bg-white/90 backdrop-blur-md border-b border-[#e6f4ef]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="../index.html" class="flex items-center gap-3">
+                    <img src="../assets/img/logo-pait-web.svg" alt="PAIT SpA Logo" class="w-24">
+                </a>
+                <div
+                    class="hidden lg:flex items-center gap-10 bg-gray-100/50 px-8 py-2 rounded-full border border-gray-200">
+                    <a class="text-lake-blue text-sm font-bold uppercase tracking-wide hover:text-primary transition-colors"
+                        href="../index.html">Inicio</a>
+                    <a class="text-text-muted text-sm font-medium hover:text-primary transition-colors"
+                        href="../propiedades/index.html">Propiedades</a>
+                    <div class="relative group">
+                        <button
+                            class="flex items-center gap-1 text-text-muted text-sm font-medium hover:text-primary transition-colors outline-none cursor-default">
+                            Soluciones PAIT
+                            <span
+                                class="material-symbols-outlined text-[18px] group-hover:rotate-180 transition-transform duration-300">expand_more</span>
+                        </button>
+                        <div
+                            class="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                            <div
+                                class="w-64 bg-white rounded-2xl shadow-xl border border-gray-100 py-3 overflow-hidden">
+                                <a href="../construccion/index.html"
+                                    class="block px-6 py-2.5 text-sm text-text-muted hover:text-primary hover:bg-gray-50 transition-colors">Construcción</a>
+                                <a href="../asesoria-legal/index.html"
+                                    class="block px-6 py-2.5 text-sm text-text-muted hover:text-primary hover:bg-gray-50 transition-colors">Asesoría
+                                    Legal y Gestión</a>
+                                <a href="index.html"
+                                    class="block px-6 py-2.5 text-sm text-text-muted hover:text-primary hover:bg-gray-50 transition-colors">Inspección
+                                    Técnica (ITO)</a>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="text-text-muted text-sm font-medium hover:text-primary transition-colors"
+                        href="#">Inversionistas</a>
+                </div>
+                <div class="flex items-center gap-4 sm:gap-6">
+                    <button
+                        class="hidden sm:flex text-sm font-semibold text-gray-600 hover:text-primary items-center gap-1">
+                        <span class="material-symbols-outlined text-[18px]">language</span>
+                        ES | PT
+                    </button>
+                    <button
+                        class="hidden sm:block bg-primary hover:bg-primary-dark text-white text-sm font-bold py-2.5 px-5 rounded-lg transition-colors shadow-lg shadow-primary/20">
+                        Agendar asesoría
+                    </button>
+                    <!-- Hamburger Button -->
+                    <button id="mobile-menu-open"
+                        class="lg:hidden flex items-center p-2 text-lake-blue hover:text-primary transition-colors">
+                        <span class="material-symbols-outlined text-3xl">menu</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu-overlay"
+        class="fixed inset-0 bg-black/50 z-[60] opacity-0 pointer-events-none transition-opacity duration-300 backdrop-blur-sm">
+    </div>
+
+    <!-- Mobile Menu Drawer -->
+    <div id="mobile-menu-drawer"
+        class="fixed top-0 right-0 h-full w-[80%] max-w-sm bg-white z-[70] translate-x-full transition-transform duration-300 ease-in-out shadow-2xl flex flex-col">
+        <div class="p-6 flex justify-between items-center border-b border-gray-100">
+            <img src="../assets/img/logo-pait-web.svg" alt="PAIT SpA Logo" class="w-20">
+            <button id="mobile-menu-close" class="text-lake-blue hover:text-primary transition-colors">
+                <span class="material-symbols-outlined text-3xl">close</span>
+            </button>
+        </div>
+
+        <div class="flex-1 overflow-y-auto py-8 px-6">
+            <nav class="flex flex-col gap-6">
+                <a class="text-lake-blue text-lg font-bold uppercase tracking-wide hover:text-primary transition-colors"
+                    href="../index.html">Inicio</a>
+                <a class="text-text-muted text-lg font-medium hover:text-primary transition-colors"
+                    href="../propiedades/index.html">Propiedades</a>
+                <div class="flex flex-col">
+                    <button id="mobile-soluciones-toggle"
+                        class="flex items-center justify-between text-text-muted text-lg font-medium hover:text-primary transition-colors w-full outline-none">
+                        Soluciones PAIT
+                        <span id="mobile-soluciones-icon"
+                            class="material-symbols-outlined transition-transform duration-300">expand_more</span>
+                    </button>
+                    <div id="mobile-soluciones-menu"
+                        class="hidden flex-col gap-4 pl-4 mt-4 border-l-2 border-primary/20">
+                        <a class="text-text-muted text-base font-medium hover:text-primary transition-colors"
+                            href="../construccion/index.html">Construcción</a>
+                        <a class="text-text-muted text-base font-medium hover:text-primary transition-colors"
+                            href="../asesoria-legal/index.html">Asesoría Legal y Gestión</a>
+                        <a class="text-text-muted text-base font-medium hover:text-primary transition-colors"
+                            href="index.html">Inspección Técnica (ITO)</a>
+                    </div>
+                </div>
+                <a class="text-text-muted text-lg font-medium hover:text-primary transition-colors"
+                    href="#">Inversionistas</a>
+            </nav>
+
+            <div class="mt-10 pt-10 border-t border-gray-100 flex flex-col gap-6">
+                <button class="flex items-center gap-2 text-gray-600 font-semibold">
+                    <span class="material-symbols-outlined text-[20px]">language</span>
+                    Cambiar idioma: ES | PT
+                </button>
+                <button
+                    class="w-full bg-primary hover:bg-primary-dark text-white text-base font-bold py-4 px-6 rounded-xl transition-colors shadow-lg shadow-primary/20">
+                    Agendar asesoría
+                </button>
+            </div>
+        </div>
+
+        <div class="p-6 border-t border-gray-100 bg-gray-50/50">
+            <p class="text-xs text-gray-400 text-center">© 2025 PAIT SpA. <br>Todos los derechos reservados.</p>
+        </div>
+    </div>
+    <section class="relative min-h-[85vh] flex items-center pt-24 overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img alt="Supervisión de obra" class="w-full h-full object-cover"
+                src="../assets/img/ito-hero.webp" />
+            <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-[2px]"></div>
+            <div
+                class="absolute inset-0 bg-gradient-to-t from-background-dark dark:from-background-dark via-transparent">
+            </div>
+        </div>
+        <div class="container mx-auto px-6 relative z-10 text-center max-w-4xl">
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] mb-6 drop-shadow-sm">
+                Construye tranquilo: <br />
+                <span class="text-primary">No pierdas el control</span> de tu proyecto.
+            </h1>
+            <p class="text-lg md:text-xl text-slate-100 mb-10 leading-relaxed font-light opacity-90 max-w-3xl mx-auto">
+                Te acompañamos en cada etapa constructiva. Resguardamos tu economía, controlamos los tiempos y validamos
+                la calidad técnica, ya sea con tu equipo o el nuestro.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button
+                    class="bg-primary hover:bg-emerald-500 text-white px-8 py-4 rounded-full font-bold transition-all flex items-center justify-center gap-2 text-lg shadow-xl shadow-primary/30 group">
+                    Solicitar Supervisión Técnica
+                    <span
+                        class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                </button>
+                <button
+                    class="bg-white/10 hover:bg-white/20 text-white backdrop-blur-md px-8 py-4 rounded-full font-bold transition-all border border-white/20">
+                    Ver metodología
+                </button>
+            </div>
+            <div class="mt-16 animate-bounce">
+                <span class="material-symbols-outlined text-white/50 text-4xl">keyboard_double_arrow_down</span>
+            </div>
+        </div>
+    </section>
+    <section class="py-24 relative bg-background-light dark:bg-background-dark overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="text-primary font-bold tracking-[0.2em] uppercase text-xs block mb-4">Nuestros
+                    Pilares</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white">Beneficios de contar con
+                    PAIT ITO</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div
+                    class="bg-white dark:bg-surface-dark p-8 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-xl transition-all group">
+                    <div
+                        class="w-14 h-14 bg-emerald-50 dark:bg-emerald-950/30 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined text-primary text-3xl">payments</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-slate-900 dark:text-white">Economía y Materiales</h3>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                        No pagues de más. Cotizamos los materiales en los lugares con las mejores ofertas de la zona
+                        para cuidar tu presupuesto sin comprometer calidad.
+                    </p>
+                </div>
+                <div
+                    class="bg-white dark:bg-surface-dark p-8 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-xl transition-all group">
+                    <div
+                        class="w-14 h-14 bg-emerald-50 dark:bg-emerald-950/30 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined text-primary text-3xl">groups</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-slate-900 dark:text-white">Equipo Idóneo</h3>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                        ¿Tus maestros son los correctos? Cuidamos que el personal contratado sea realmente idóneo para
+                        el sueldo ofrecido y la tarea asignada.
+                    </p>
+                </div>
+                <div
+                    class="bg-white dark:bg-surface-dark p-8 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-xl transition-all group">
+                    <div
+                        class="w-14 h-14 bg-emerald-50 dark:bg-emerald-950/30 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined text-primary text-3xl">schedule</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-slate-900 dark:text-white">Control de Tiempos</h3>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Monitoreamos el avance real vs. el programado para que tengas índices claros de costos y tiempos
+                        de desarrollo en cada fase.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-24 bg-slate-50 dark:bg-slate-900/50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-extrabold text-slate-900 dark:text-white mb-6">Tú eliges cómo
+                    trabajamos</h2>
+                <div class="h-1.5 w-24 bg-primary mx-auto rounded-full"></div>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
+                <div
+                    class="bg-white dark:bg-surface-dark rounded-3xl overflow-hidden flex flex-col md:flex-row shadow-lg">
+                    <div class="w-full md:w-2/5 relative h-64 md:h-auto">
+                        <img alt="Equipo de trabajo" class="w-full h-full object-cover"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDO9g2j11QUVaa3AXLtqGUGZ3kBAHidBA32Igs8Gl3j2t-HWMMtlwom7v0QH4bNIBqgu73fmfUm_CIkpKtrDF2-YLISvzbIAwKzroOSZ-nP1Y6wec9PJ4dg17ReOfIhYZ98MoPZzw9du9RQvYlotJygf714iaIIf1NXuBxVI7FnDc0NaDQBwjtTwrvDQ-jQKKsPDWXyN8Mn4bP8Y9r9FovjkMdz8SIeBiR9KF5o_T04OVNhrTPNcmi1Vd0Kf9WDJ0jvuX1J9zXdfvk" />
+                        <div class="absolute inset-0 bg-primary/20"></div>
+                    </div>
+                    <div class="p-8 md:p-10 flex-1">
+                        <div class="text-xs font-bold text-primary mb-2">OPCIÓN A</div>
+                        <h4 class="text-2xl font-bold mb-4 text-slate-900 dark:text-white">Coordinamos a TU Equipo</h4>
+                        <p class="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">
+                            Si ya tienes maestros, actuamos como Inspector Técnico (ITO) externo para fiscalizar calidad
+                            y avances, entregando informes de auditoría profesional.
+                        </p>
+                        <ul class="space-y-3">
+                            <li class="flex items-center gap-2 text-sm">
+                                <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                                Auditoría de calidad técnica
+                            </li>
+                            <li class="flex items-center gap-2 text-sm">
+                                <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                                Reportes de avance semanal
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div
+                    class="bg-white dark:bg-surface-dark rounded-3xl overflow-hidden flex flex-col md:flex-row shadow-lg">
+                    <div class="w-full md:w-2/5 relative h-64 md:h-auto">
+                        <img alt="Gestión de equipo" class="w-full h-full object-cover"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKHeEI_S3E9O-gLvlw9da1QO2s2KIgdj1IJeweb57Nk5X_5s2g15UhCW7xPOcNVes1Bah6w6oYBKzCubOfua-gdWfNu4NnE5e5fIfqVSHPYLIzfiS-fTEQDAeGs9A8ZufI00LXWqMUPv0jNum_M8nQh4CpdOqpuKkifIyawtuVmymGLC4tOSxBImtsEPjzS0IIfPTP-04hjnVsB1xf1QI04N_D1cFDb7MrR51jiLnUpFYC0y-43xPNVUprTOs8ac-PFdFz4TCnBDQ" />
+                        <div class="absolute inset-0 bg-primary/20"></div>
+                    </div>
+                    <div class="p-8 md:p-10 flex-1">
+                        <div class="text-xs font-bold text-primary mb-2">OPCIÓN B</div>
+                        <h4 class="text-2xl font-bold mb-4 text-slate-900 dark:text-white">Armamos el Equipo por TI</h4>
+                        <p class="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">
+                            Si no tienes trabajadores, nosotros te ayudamos a armar el equipo de trabajo confiable y
+                            calificado para tu proyecto específico.
+                        </p>
+                        <ul class="space-y-3">
+                            <li class="flex items-center gap-2 text-sm">
+                                <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                                Selección de mano de obra
+                            </li>
+                            <li class="flex items-center gap-2 text-sm">
+                                <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                                Gestión integral de obra
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-24 relative overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div
+                class="bg-slate-900 dark:bg-slate-800 rounded-[2.5rem] p-8 md:p-16 flex flex-col md:flex-row items-center gap-12 relative">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl -mr-32 -mt-32"></div>
+                <div class="flex-1">
+                    <h3 class="text-3xl md:text-4xl font-extrabold text-white mb-6">Más que fiscalizar, <span
+                            class="text-primary underline decoration-primary/30 underline-offset-8">optimizamos</span>.
+                    </h3>
+                    <p class="text-slate-300 text-lg leading-relaxed mb-8">
+                        A diferencia de un ITO tradicional que solo mira fallas, nosotros nos involucramos en la gestión
+                        de compra y en la estrategia constructiva para que el proyecto sea eficiente de principio a fin.
+                        Buscamos el equilibrio perfecto entre presupuesto, normativa y estética.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-primary text-xl">auto_fix_high</span>
+                            </div>
+                            <span class="text-white font-medium text-sm">Optimización de materiales</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-primary text-xl">account_tree</span>
+                            </div>
+                            <span class="text-white font-medium text-sm">Visión estratégica</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/3">
+                    <img alt="Gestión de estrategia"
+                        class="rounded-2xl shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-500"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKORw0IIaEBJdReu3AmypkySwCyr7sIYr6Si3OiGZUBNI0Pi-7IxdA1FOc0PtvKs5xCj1QyfsS8s0XR-AHVGgBDposrHjyIA2APgJ_A4GmCwjTpN5l8VVBh986MsODShNhUAPysj9NjAAmVeH4TJ-m51OCgUsXybNZpY99YkHcQnTeufObMZmdcdrDueyv10omvHNygN6jcz-0l4hCZvPKHQK-fBKDrv37lpun7QEgOVb304B3gHGLuWTvSbqF4ATgzsiHWS__m64" />
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-24 bg-white dark:bg-background-dark">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <div class="text-center mb-16">
+                <span class="text-primary font-bold tracking-[0.2em] uppercase text-xs block mb-4">Resolviendo
+                    Dudas</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white">Preguntas Frecuentes</h2>
+            </div>
+            <div class="space-y-4">
+                <details
+                    class="group bg-slate-50 dark:bg-surface-dark p-6 rounded-2xl border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all cursor-pointer">
+                    <summary class="flex justify-between items-center font-bold text-lg list-none">
+                        <span>¿Pueden supervisar obras en zonas rurales lejanas?</span>
+                        <span
+                            class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+                    </summary>
+                    <div
+                        class="mt-4 text-slate-600 dark:text-slate-400 leading-relaxed border-t border-slate-200 dark:border-slate-700 pt-4">
+                        Sí, nuestro enfoque está especialmente diseñado para el sur de Chile. Cubrimos zonas de difícil
+                        acceso y parcelaciones rurales donde la logística es un desafío crítico que sabemos manejar.
+                    </div>
+                </details>
+                <details
+                    class="group bg-slate-50 dark:bg-surface-dark p-6 rounded-2xl border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all cursor-pointer">
+                    <summary class="flex justify-between items-center font-bold text-lg list-none">
+                        <span>¿Ustedes compran los materiales?</span>
+                        <span
+                            class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+                    </summary>
+                    <div
+                        class="mt-4 text-slate-600 dark:text-slate-400 leading-relaxed border-t border-slate-200 dark:border-slate-700 pt-4">
+                        Gestionamos las cotizaciones detalladas y te presentamos las mejores opciones de proveedores
+                        locales y regionales para que tú mantengas el control financiero y decidas sobre la compra
+                        final.
+                    </div>
+                </details>
+                <details
+                    class="group bg-slate-50 dark:bg-surface-dark p-6 rounded-2xl border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all cursor-pointer">
+                    <summary class="flex justify-between items-center font-bold text-lg list-none">
+                        <span>¿Qué tipo de informes entregan?</span>
+                        <span
+                            class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+                    </summary>
+                    <div
+                        class="mt-4 text-slate-600 dark:text-slate-400 leading-relaxed border-t border-slate-200 dark:border-slate-700 pt-4">
+                        Entregamos reportes de avance físico semanal con registro fotográfico, control de estados de
+                        pago según avance real y bitácora de incidencias técnicas resueltas en terreno.
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+    <section class="pb-24 pt-12">
+        <div class="container mx-auto px-6">
+            <div
+                class="bg-gradient-to-r from-slate-900 to-slate-800 dark:from-slate-950 dark:to-slate-900 rounded-3xl p-10 md:p-20 text-center relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+                    <div class="grid grid-cols-6 gap-4">
+                        <div class="h-40 border-r border-slate-100"></div>
+                        <div class="h-40 border-r border-slate-100"></div>
+                        <div class="h-40 border-r border-slate-100"></div>
+                        <div class="h-40 border-r border-slate-100"></div>
+                        <div class="h-40 border-r border-slate-100"></div>
+                        <div class="h-40 border-r border-slate-100"></div>
+                    </div>
+                </div>
+                <div class="relative z-10">
+                    <span
+                        class="bg-primary/20 text-primary px-4 py-1 rounded-full text-sm font-bold uppercase tracking-widest mb-6 inline-block">AGENDA
+                        ABIERTA</span>
+                    <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6">Asegura tu inversión. <br
+                            class="hidden md:block" /> Ten un experto de tu lado.</h2>
+                    <p class="text-slate-400 text-lg mb-10 max-w-2xl mx-auto">
+                        Evita costos inesperados y retrasos frustrantes. Agenda una reunión de 30 minutos sin costo para
+                        evaluar tu proyecto.
+                    </p>
+                    <button
+                        class="bg-primary hover:bg-emerald-500 text-white px-10 py-5 rounded-full font-bold text-lg transition-all shadow-2xl shadow-primary/40 flex items-center gap-3 mx-auto">
+                        <span class="material-symbols-outlined">edit_calendar</span>
+                        Cotizar Inspección Técnica
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="bg-gray-50 text-lake-blue pt-20 pb-10 border-t border-gray-200">
+        <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <div class="col-span-1 md:col-span-1">
+                    <a href="../index.html" class="flex items-center gap-2 mb-6 w-[150px]">
+                        <img src="../assets/img/logo-pait-web.svg" alt="PAIT SpA">
+                    </a>
+                    <p class="text-text-muted text-sm leading-relaxed font-light mb-6">
+                        Tu socio estratégico para inversiones inmobiliarias y construcción en el sur de Chile.
+                        Comprometidos con el desarrollo sustentable.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-6 font-display">Navegación</h4>
+                    <ul class="space-y-3 text-text-muted text-sm">
+                        <li><a class="hover:text-primary transition-colors hover:translate-x-1 inline-block transform duration-200"
+                                href="../index.html">Inicio</a></li>
+                        <li><a class="hover:text-primary transition-colors hover:translate-x-1 inline-block transform duration-200"
+                                href="../propiedades/index.html">Propiedades</a></li>
+                        <li><a class="hover:text-primary transition-colors hover:translate-x-1 inline-block transform duration-200"
+                                href="../construccion/index.html">Construcción</a></li>
+                        <li><a class="hover:text-primary transition-colors hover:translate-x-1 inline-block transform duration-200"
+                                href="../index.html#metodo">Modelo PAIT</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-6 font-display">Contacto</h4>
+                    <ul class="space-y-4 text-text-muted text-sm">
+                        <li class="flex items-center gap-3">
+                            <span
+                                class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                                <span class="material-symbols-outlined text-sm">mail</span>
+                            </span>
+                            <a class="hover:text-lake-blue transition-colors font-medium"
+                                href="mailto:contacto@pait.cl">contacto@pait.cl</a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span
+                                class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                                <span class="material-symbols-outlined text-sm">call</span>
+                            </span>
+                            <a class="hover:text-lake-blue transition-colors font-medium" href="tel:+56912345678">+56 9
+                                1234 5678</a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span
+                                class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                                <span class="material-symbols-outlined text-sm">location_on</span>
+                            </span>
+                            <span>Valdivia, Chile</span>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-6 font-display">Síguenos</h4>
+                    <div class="flex gap-4">
+                        <a class="w-12 h-12 rounded-full bg-white border border-gray-200 flex items-center justify-center hover:bg-lake-blue hover:text-white hover:border-lake-blue transition-all duration-300 shadow-sm"
+                            href="#" aria-label="Instagram">
+                            <i class="fa-brands fa-instagram text-xl"></i>
+                        </a>
+                        <a class="w-12 h-12 rounded-full bg-white border border-gray-200 flex items-center justify-center hover:bg-lake-blue hover:text-white hover:border-lake-blue transition-all duration-300 shadow-sm"
+                            href="#" aria-label="LinkedIn">
+                            <i class="fa-brands fa-linkedin-in text-xl"></i>
+                        </a>
+                        <a class="w-12 h-12 rounded-full bg-white border border-gray-200 flex items-center justify-center hover:bg-lake-blue hover:text-white hover:border-lake-blue transition-all duration-300 shadow-sm"
+                            href="#" aria-label="Facebook">
+                            <i class="fa-brands fa-facebook-f text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="pt-8 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-400 text-sm font-light">
+                <p>© 2025 PAIT SpA. Todos los derechos reservados.</p>
+                <div class="flex gap-8">
+                    <a class="hover:text-lake-blue transition-colors" href="#">Política de Privacidad</a>
+                    <a class="hover:text-lake-blue transition-colors" href="#">Términos y Condiciones</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        const menuOpen = document.getElementById('mobile-menu-open');
+        const menuClose = document.getElementById('mobile-menu-close');
+        const menuDrawer = document.getElementById('mobile-menu-drawer');
+        const menuOverlay = document.getElementById('mobile-menu-overlay');
+
+        function toggleMenu(isOpen) {
+            if (isOpen) {
+                menuDrawer.classList.remove('translate-x-full');
+                menuOverlay.classList.remove('opacity-0', 'pointer-events-none');
+                document.body.style.overflow = 'hidden';
+            } else {
+                menuDrawer.classList.add('translate-x-full');
+                menuOverlay.classList.add('opacity-0', 'pointer-events-none');
+                document.body.style.overflow = '';
+            }
+        }
+
+        menuOpen.addEventListener('click', () => toggleMenu(true));
+        menuClose.addEventListener('click', () => toggleMenu(false));
+        menuOverlay.addEventListener('click', () => toggleMenu(false));
+
+        // Soluciones PAIT Accordion
+        const solucionesToggle = document.getElementById('mobile-soluciones-toggle');
+        const solucionesMenu = document.getElementById('mobile-soluciones-menu');
+        const solucionesIcon = document.getElementById('mobile-soluciones-icon');
+
+        solucionesToggle.addEventListener('click', () => {
+            const isHidden = solucionesMenu.classList.contains('hidden');
+            if (isHidden) {
+                solucionesMenu.classList.remove('hidden');
+                solucionesMenu.classList.add('flex');
+                solucionesIcon.classList.add('rotate-180');
+            } else {
+                solucionesMenu.classList.add('hidden');
+                solucionesMenu.classList.remove('flex');
+                solucionesIcon.classList.remove('rotate-180');
+            }
+        });
+
+        // Close menu on link click
+        const mobileLinks = menuDrawer.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => toggleMenu(false));
+        });
+    </script>
+
+</body>
+
+</html>
