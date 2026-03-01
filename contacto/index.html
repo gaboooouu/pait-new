@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html class="light scroll-smooth" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Contacto - PAIT SpA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00BE71",
+                        "primary-dark": "#009e5f",
+                        "background-light": "#f0f2f4",
+                        "lake-blue": "#0a2342",
+                        "surface-light": "#ffffff",
+                        "text-main": "#101815",
+                        "text-muted": "#4b5563",
+                        "background-dark": "#0f231b",
+                        "slate-800": "#1e293b",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        .hero-gradient {
+            background: linear-gradient(rgba(10, 35, 66, 0.8), rgba(10, 35, 66, 0.9)), url('../assets/img/bg-contacto.webp');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .input-focus:focus {
+            border-color: #00BE71;
+            box-shadow: 0 0 0 4px rgba(0, 190, 113, 0.1);
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-lake-blue font-display overflow-x-hidden antialiased">
+    <nav class="sticky top-0 z-50 w-full bg-white/90 backdrop-blur-md border-b border-[#e6f4ef]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="../index.html" class="flex items-center gap-3">
+                    <img src="../assets/img/logo-pait-web.svg" alt="PAIT SpA Logo" class="w-24">
+                </a>
+                <div
+                    class="hidden lg:flex items-center gap-10 bg-gray-100/50 px-8 py-2 rounded-full border border-gray-200">
+                    <a class="text-text-muted text-sm font-medium hover:text-primary transition-colors"
+                        href="../index.html">Inicio</a>
+                    <a class="text-text-muted text-sm font-medium hover:text-primary transition-colors"
+                        href="../propiedades/index.html">Propiedades</a>
+                    <div class="relative group">
+                        <button
+                            class="flex items-center gap-1 text-text-muted text-sm font-medium hover:text-primary transition-colors outline-none cursor-default">
+                            Soluciones PAIT
+                            <span
+                                class="material-symbols-outlined text-[18px] group-hover:rotate-180 transition-transform duration-300">expand_more</span>
+                        </button>
+                        <div
+                            class="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                            <div
+                                class="w-64 bg-white rounded-2xl shadow-xl border border-gray-100 py-3 overflow-hidden">
+                                <a href="../construccion/index.html"
+                                    class="block px-6 py-2.5 text-sm text-text-muted hover:text-primary hover:bg-gray-50 transition-colors">Construcción</a>
+                                <a href="../asesoria-legal/index.html"
+                                    class="block px-6 py-2.5 text-sm text-text-muted hover:text-primary hover:bg-gray-50 transition-colors">Asesoría
+                                    Legal y Gestión</a>
+                                <a href="../inspeccion-tecnica/index.html"
+                                    class="block px-6 py-2.5 text-sm text-text-muted hover:text-primary hover:bg-gray-50 transition-colors">Inspección
+                                    Técnica (ITO)</a>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="text-text-muted text-sm font-medium hover:text-primary transition-colors"
+                        href="#">Inversionistas</a>
+                </div>
+                <div class="flex items-center gap-4 sm:gap-6">
+                    <button
+                        class="hidden sm:flex text-sm font-semibold text-gray-600 hover:text-primary items-center gap-1">
+                        <span class="material-symbols-outlined text-[18px]">language</span>
+                        ES | PT
+                    </button>
+                    <button
+                        class="hidden sm:block bg-primary hover:bg-primary-dark text-white text-sm font-bold py-2.5 px-5 rounded-lg transition-colors shadow-lg shadow-primary/20">
+                        Agendar asesoría
+                    </button>
+                    <!-- Hamburger Button -->
+                    <button id="mobile-menu-open"
+                        class="lg:hidden flex items-center p-2 text-lake-blue hover:text-primary transition-colors">
+                        <span class="material-symbols-outlined text-3xl">menu</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu-overlay"
+        class="fixed inset-0 bg-black/50 z-[60] opacity-0 pointer-events-none transition-opacity duration-300 backdrop-blur-sm">
+    </div>
+
+    <!-- Mobile Menu Drawer -->
+    <div id="mobile-menu-drawer"
+        class="fixed top-0 right-0 h-full w-[80%] max-w-sm bg-white z-[70] translate-x-full transition-transform duration-300 ease-in-out shadow-2xl flex flex-col">
+        <div class="p-6 flex justify-between items-center border-b border-gray-100">
+            <img src="../assets/img/logo-pait-web.svg" alt="PAIT SpA Logo" class="w-20">
+            <button id="mobile-menu-close" class="text-lake-blue hover:text-primary transition-colors">
+                <span class="material-symbols-outlined text-3xl">close</span>
+            </button>
+        </div>
+
+        <div class="flex-1 overflow-y-auto py-8 px-6">
+            <nav class="flex flex-col gap-6">
+                <a class="text-text-muted text-lg font-medium hover:text-primary transition-colors"
+                    href="../index.html">Inicio</a>
+                <a class="text-text-muted text-lg font-medium hover:text-primary transition-colors"
+                    href="../propiedades/index.html">Propiedades</a>
+                <div class="flex flex-col">
+                    <button id="mobile-soluciones-toggle"
+                        class="flex items-center justify-between text-text-muted text-lg font-medium hover:text-primary transition-colors w-full outline-none">
+                        Soluciones PAIT
+                        <span id="mobile-soluciones-icon"
+                            class="material-symbols-outlined transition-transform duration-300">expand_more</span>
+                    </button>
+                    <div id="mobile-soluciones-menu"
+                        class="hidden flex-col gap-4 pl-4 mt-4 border-l-2 border-primary/20">
+                        <a class="text-text-muted text-base font-medium hover:text-primary transition-colors"
+                            href="../construccion/index.html">Construcción</a>
+                        <a class="text-text-muted text-base font-medium hover:text-primary transition-colors"
+                            href="../asesoria-legal/index.html">Asesoría Legal y Gestión</a>
+                        <a class="text-text-muted text-base font-medium hover:text-primary transition-colors"
+                            href="../inspeccion-tecnica/index.html">Inspección Técnica (ITO)</a>
+                    </div>
+                </div>
+                <a class="text-text-muted text-lg font-medium hover:text-primary transition-colors"
+                    href="#">Inversionistas</a>
+            </nav>
+
+            <div class="mt-10 pt-10 border-t border-gray-100 flex flex-col gap-6">
+                <button class="flex items-center gap-2 text-gray-600 font-semibold">
+                    <span class="material-symbols-outlined text-[20px]">language</span>
+                    Cambiar idioma: ES | PT
+                </button>
+                <button
+                    class="w-full bg-primary hover:bg-primary-dark text-white text-base font-bold py-4 px-6 rounded-xl transition-colors shadow-lg shadow-primary/20">
+                    Agendar asesoría
+                </button>
+            </div>
+        </div>
+
+        <div class="p-6 border-t border-gray-100 bg-gray-50/50">
+            <p class="text-xs text-gray-400 text-center">© 2025 PAIT SpA. <br>Todos los derechos reservados.</p>
+        </div>
+    </div>
+
+    <!-- Contact Hero -->
+    <section class="hero-gradient py-24 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <h1 class="text-white text-4xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight mb-6 drop-shadow-lg">
+                Hablemos de tu <br /><span class="text-primary italic">Próximo Paso.</span>
+            </h1>
+            <p class="text-slate-200 text-lg md:text-xl font-light max-w-2xl mx-auto leading-relaxed drop-shadow-md">
+                ¿Tienes dudas técnicas, legales o buscas la propiedad ideal? Nuestro equipo está listo para asesorarte en terreno.
+            </p>
+        </div>
+    </section>
+
+    <!-- Main Content Section -->
+    <section class="py-24 -mt-20 relative z-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                
+                <!-- Contact Info Cards -->
+                <div class="lg:col-span-1 space-y-6">
+                    <div class="glass-card p-8 rounded-3xl shadow-xl">
+                        <div class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary mb-6">
+                            <span class="material-symbols-outlined text-3xl">mail</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Envíanos un correo</h3>
+                        <p class="text-text-muted mb-4 font-light">Para consultas generales o propuestas comerciales.</p>
+                        <a href="mailto:contacto@pait.cl" class="text-primary font-bold hover:underline">contacto@pait.cl</a>
+                    </div>
+
+                    <div class="glass-card p-8 rounded-3xl shadow-xl">
+                        <div class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary mb-6">
+                            <span class="material-symbols-outlined text-3xl">call</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Llamadas y WhatsApp</h3>
+                        <p class="text-text-muted mb-4 font-light">Habla directamente con uno de nuestros asesores.</p>
+                        <a href="tel:+56912345678" class="text-primary font-bold hover:underline">+56 9 1234 5678</a>
+                    </div>
+
+                    <div class="glass-card p-8 rounded-3xl shadow-xl">
+                        <div class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary mb-6">
+                            <span class="material-symbols-outlined text-3xl">location_on</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Ubicación</h3>
+                        <p class="text-text-muted mb-4 font-light">Nuestra base principal en el Sur de Chile.</p>
+                        <p class="text-lake-blue font-bold">Valdivia, Región de Los Ríos</p>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="lg:col-span-2">
+                    <div class="bg-white p-8 md:p-12 rounded-[2.5rem] shadow-2xl border border-gray-100">
+                        <h2 class="text-3xl font-bold mb-8 tracking-tight">Envíanos un mensaje</h2>
+                        <form action="#" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="space-y-1">
+                                <label class="text-sm font-bold text-gray-400 uppercase tracking-widest pl-1">Nombre Completo</label>
+                                <input type="text" placeholder="Ej: Juan Pérez" 
+                                    class="w-full px-5 py-4 rounded-xl border-gray-100 bg-gray-50/50 input-focus transition-all outline-none">
+                            </div>
+                            <div class="space-y-1">
+                                <label class="text-sm font-bold text-gray-400 uppercase tracking-widest pl-1">Correo Electrónico</label>
+                                <input type="email" placeholder="nombre@mail.com" 
+                                    class="w-full px-5 py-4 rounded-xl border-gray-100 bg-gray-50/50 input-focus transition-all outline-none">
+                            </div>
+                            <div class="space-y-1">
+                                <label class="text-sm font-bold text-gray-400 uppercase tracking-widest pl-1">Teléfono</label>
+                                <input type="tel" placeholder="+56 9 ..." 
+                                    class="w-full px-5 py-4 rounded-xl border-gray-100 bg-gray-50/50 input-focus transition-all outline-none">
+                            </div>
+                            <div class="space-y-1">
+                                <label class="text-sm font-bold text-gray-400 uppercase tracking-widest pl-1">Interés</label>
+                                <select class="w-full px-5 py-4 rounded-xl border-gray-100 bg-gray-50/50 input-focus transition-all outline-none appearance-none">
+                                    <option>Venta de Propiedades</option>
+                                    <option>Diseño y Construcción</option>
+                                    <option>Inspección Técnica (ITO)</option>
+                                    <option>Asesoría Legal</option>
+                                    <option>Otro</option>
+                                </select>
+                            </div>
+                            <div class="space-y-1 md:col-span-2">
+                                <label class="text-sm font-bold text-gray-400 uppercase tracking-widest pl-1">Tu Mensaje</label>
+                                <textarea rows="5" placeholder="Cuéntanos más sobre lo que buscas..." 
+                                    class="w-full px-5 py-4 rounded-xl border-gray-100 bg-gray-50/50 input-focus transition-all outline-none resize-none"></textarea>
+                            </div>
+                            <div class="md:col-span-2 pt-4">
+                                <button type="submit" 
+                                    class="w-full bg-primary hover:bg-primary-dark text-white font-bold py-4 rounded-xl shadow-lg shadow-primary/20 transition-all flex items-center justify-center gap-2">
+                                    Enviar Mensaje
+                                    <span class="material-symbols-outlined">send</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map/CTA Section -->
+    <section class="py-24 bg-white overflow-hidden relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-primary font-bold tracking-widest uppercase text-sm mb-4 block">Presencia Local</span>
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight">Estamos donde está <span class="text-primary">tu inversión.</span></h2>
+            </div>
+            
+            <div class="rounded-[3rem] overflow-hidden shadow-2xl relative h-[500px]">
+                <img src="../assets/img/presencia-local.webp" 
+                    alt="Paisaje Sur de Chile" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-lake-blue/20"></div>
+                
+                <div class="absolute inset-0 flex items-center justify-center p-6">
+                    <div class="glass-card p-10 rounded-[2.5rem] max-w-lg text-center shadow-2xl animate-fade-in">
+                        <h3 class="text-2xl font-bold mb-4">¿Vienes desde lejos?</h3>
+                        <p class="text-text-muted mb-8 font-light leading-relaxed">
+                            Si viajas desde Santiago o el extranjero para conocer un terreno, coordinamos tu recibimiento en el aeropuerto y transporte local.
+                        </p>
+                        <button class="bg-lake-blue text-white px-8 py-4 rounded-xl font-bold hover:bg-primary transition-colors flex items-center justify-center gap-2 mx-auto">
+                            Ver Servicio VIP
+                            <span class="material-symbols-outlined">flight_takeoff</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-50 text-lake-blue pt-20 pb-10 border-t border-gray-200">
+        <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <div class="col-span-1 md:col-span-1">
+                    <a href="../index.html" class="flex items-center gap-3 mb-6 w-[150px]">
+                        <img src="../assets/img/logo-pait-web.svg" alt="PAIT SpA">
+                    </a>
+                    <p class="text-text-muted text-sm leading-relaxed font-light mb-6">
+                        Tu socio estratégico para inversiones inmobiliarias y construcción en el sur de Chile.
+                        Comprometidos con el desarrollo sustentable.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Navegación</h4>
+                    <ul class="space-y-3 text-text-muted text-sm">
+                        <li><a class="hover:text-primary transition-colors" href="../index.html">Inicio</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="../propiedades/index.html">Propiedades</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="../construccion/index.html">Construcción</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="../index.html#metodo">Modelo PAIT</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="index.html">Contacto</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Contacto</h4>
+                    <ul class="space-y-4 text-text-muted text-sm">
+                        <li class="flex items-center gap-3">
+                            <span class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                                <span class="material-symbols-outlined text-sm">mail</span>
+                            </span>
+                            <a class="hover:text-lake-blue transition-colors font-medium" href="mailto:contacto@pait.cl">contacto@pait.cl</a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                                <span class="material-symbols-outlined text-sm">call</span>
+                            </span>
+                            <a class="hover:text-lake-blue transition-colors font-medium" href="tel:+56912345678">+56 9 1234 5678</a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                                <span class="material-symbols-outlined text-sm">location_on</span>
+                            </span>
+                            <span>Valdivia, Chile</span>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Síguenos</h4>
+                    <div class="flex gap-4">
+                        <a class="w-12 h-12 rounded-full bg-white border border-gray-200 flex items-center justify-center hover:bg-lake-blue hover:text-white transition-all shadow-sm" href="#"><i class="fa-brands fa-instagram text-xl"></i></a>
+                        <a class="w-12 h-12 rounded-full bg-white border border-gray-200 flex items-center justify-center hover:bg-lake-blue hover:text-white transition-all shadow-sm" href="#"><i class="fa-brands fa-linkedin-in text-xl"></i></a>
+                        <a class="w-12 h-12 rounded-full bg-white border border-gray-200 flex items-center justify-center hover:bg-lake-blue hover:text-white transition-all shadow-sm" href="#"><i class="fa-brands fa-facebook-f text-xl"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-400 text-sm font-light">
+                <p>© 2025 PAIT SpA. Todos los derechos reservados.</p>
+                <div class="flex gap-8">
+                    <a class="hover:text-lake-blue transition-colors" href="#">Política de Privacidad</a>
+                    <a class="hover:text-lake-blue transition-colors" href="#">Términos y Condiciones</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const menuOpen = document.getElementById('mobile-menu-open');
+        const menuClose = document.getElementById('mobile-menu-close');
+        const menuDrawer = document.getElementById('mobile-menu-drawer');
+        const menuOverlay = document.getElementById('mobile-menu-overlay');
+
+        function toggleMenu(isOpen) {
+            if (isOpen) {
+                menuDrawer.classList.remove('translate-x-full');
+                menuOverlay.classList.remove('opacity-0', 'pointer-events-none');
+                document.body.style.overflow = 'hidden';
+            } else {
+                menuDrawer.classList.add('translate-x-full');
+                menuOverlay.classList.add('opacity-0', 'pointer-events-none');
+                document.body.style.overflow = '';
+            }
+        }
+
+        menuOpen.addEventListener('click', () => toggleMenu(true));
+        menuClose.addEventListener('click', () => toggleMenu(false));
+        menuOverlay.addEventListener('click', () => toggleMenu(false));
+
+        const solucionesToggle = document.getElementById('mobile-soluciones-toggle');
+        const solucionesMenu = document.getElementById('mobile-soluciones-menu');
+        const solucionesIcon = document.getElementById('mobile-soluciones-icon');
+
+        solucionesToggle.addEventListener('click', () => {
+            const isHidden = solucionesMenu.classList.contains('hidden');
+            if (isHidden) {
+                solucionesMenu.classList.remove('hidden');
+                solucionesMenu.classList.add('flex');
+                solucionesIcon.classList.add('rotate-180');
+            } else {
+                solucionesMenu.classList.add('hidden');
+                solucionesMenu.classList.remove('flex');
+                solucionesIcon.classList.remove('rotate-180');
+            }
+        });
+    </script>
+</body>
+</html>
